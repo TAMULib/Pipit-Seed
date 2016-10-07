@@ -1,1 +1,4 @@
 App/Config/config.php
+composer.lock
+composer.phar
+vendor/

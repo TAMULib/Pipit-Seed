@@ -1,0 +1,5 @@
+{
+    "require": {
+        "tamu-lib/pipit": "1.*"
+    }
+}
