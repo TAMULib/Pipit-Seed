@@ -11,12 +11,21 @@ use Core\Lib as CoreLib;
 *
 */
 
+require_once PATH_LIB."functions.php";
+
+/**
+*   This autoloader will search NAMESPACE_APP for a matching file containing the declaration of that class or interface.
+*/
+spl_autoload_register(function($class) {
+    CoreLib\loadFile($class,NAMESPACE_APP,PATH_APP);
+});
+
 if (WITH_COMPOSER) {
 	require PATH_VENDOR.'/autoload.php';
 } else {
 	require PATH_CORE_LIB.'/autoload.php';
 }
-require_once PATH_LIB."functions.php";
+
 require_once PATH_CONFIG.'config.pages.php';
 
 $config = get_defined_constants(true)["user"];

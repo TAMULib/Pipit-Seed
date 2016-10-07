@@ -1,5 +1,5 @@
 {
     "require": {
-        "tamu-lib/pipit": "1.*"
+        "tamu-lib/pipit": "v1.0.0-p4"
     }
 }
