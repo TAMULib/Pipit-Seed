@@ -11,6 +11,11 @@ use Core\Lib as CoreLib;
 *
 */
 
+if (WITH_COMPOSER) {
+	require PATH_VENDOR.'/autoload.php';
+} else {
+	require PATH_CORE_LIB.'/autoload.php';
+}
 require_once PATH_LIB."functions.php";
 require_once PATH_CONFIG.'config.pages.php';
 

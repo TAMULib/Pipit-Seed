@@ -5,5 +5,5 @@
 *
 */
 
-include PATH_CORE_LIB.'functions.php';
+require_once PATH_CORE_LIB."functions.php";
 ?>
