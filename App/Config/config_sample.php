@@ -5,7 +5,8 @@
 define('PATH_ROOT', '/'); 
 
 define('APP_NAME', 'The PipitSeed App'); 
-define('APP_DIRECTORY', 'Pipit'); 
+define('APP_DIRECTORY', 'Pipit-seed'); 
+define('CORE_DIRECTORY', 'Pipit'); 
 
 
 //Optionally change this to your domain or IP.
@@ -23,6 +24,7 @@ define("NAMESPACE_APP","App\\");
 //server paths
 //These don't need to be touched unless you're changing the location of the respective directories
 define('PATH_APP', PATH_ROOT.APP_DIRECTORY.'/');
+define('PATH_CORE', PATH_ROOT.CORE_DIRECTORY.'/');
 define('PATH_CONFIG', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Config/");
 define('PATH_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Lib/");
 define('PATH_CORE_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_CORE)."Lib/");

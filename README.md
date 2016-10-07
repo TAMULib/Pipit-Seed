@@ -1,5 +1,5 @@
-# Pipit
-A basic PHP framework for web app development
+# Pipit Seed App
+A starter application built on the Pipit PHP framework
 
 ## Documentation
 https://tamulib.github.io/Pipit/api/
