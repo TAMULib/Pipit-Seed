@@ -93,6 +93,9 @@ define('DB_DEBUG', false);
 //Set the log level: 0 = Everything, 3 = Errors only
 define("LOG_LEVEL",3);
 
+//If LOADER_CLASS is not set, the app will use CoreLoader by default.
+//define('LOADER_CLASS','AppLoader');
+
 //If SITE_CLASS is not set, the app will use CoreSite by default.
 //define('SITE_CLASS','Site');
 
