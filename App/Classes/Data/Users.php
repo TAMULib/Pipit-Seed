@@ -10,7 +10,7 @@ use Core\Classes\Data as CoreData;
 
 class Users extends CoreData\AbstractDataBaseRepository {
 	public function __construct() {
-		parent::__construct('users','id','name_last',array('username','email','name_first','name_last','isadmin','inactive'),array("name_last","name_first","email"));
+		parent::__construct('users','id','name_last',array('username','email','name_first','name_last','role','inactive'),array("name_last","name_first","email"));
 	}
 
 	public function get() {

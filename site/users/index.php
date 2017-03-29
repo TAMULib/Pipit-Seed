@@ -1,5 +1,5 @@
 <?php
 include "../../App/Config/config.php";
-$forceRedirectUrl = PATH_HTTP;
+$controllerConfig = array('name'=>'users');
 include PATH_LIB."loader.php";
 ?>
