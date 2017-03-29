@@ -102,6 +102,9 @@ define("LOG_LEVEL",3);
 //If VIEW_RENDERER is not set, the app will use the HTMLViewRenderer by default.
 define('VIEW_RENDERER','BootstrapViewRenderer');
 
+//When set, CoreSite will try to use NAMESPACE_APP\Classes\Data\USER_CLASS as the globalUser
+//define('USER_CLASS','User');
+
 define('SECURITY_PUBLIC',-1);
 define('SECURITY_USER',0);
 define('SECURITY_ADMIN',1);
