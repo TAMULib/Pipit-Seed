@@ -48,7 +48,7 @@ class Users extends CoreData\AbstractDataBaseRepository {
 	public function add($data) {
 		if (!$data['iscas']) {
 			if (!empty($data['password'])) {
-				$data['password'] = CoreData\User::hashPassword($data['password']);
+				$data['password'] = CoreData\UserDB::hashPassword($data['password']);
 			}
 			$data['inactive'] = 1;
 		}
@@ -57,7 +57,7 @@ class Users extends CoreData\AbstractDataBaseRepository {
 
 	public function update($id,$data) {
 		if (!empty($data['password'])) {
-			$data['password'] = CoreData\User::hashPassword($data['password']);
+			$data['password'] = CoreData\UserDB::hashPassword($data['password']);
 		}
 		return parent::update($id,$data);
 	}
