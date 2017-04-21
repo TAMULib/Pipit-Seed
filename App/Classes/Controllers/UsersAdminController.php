@@ -60,7 +60,7 @@ class UsersAdminController extends Core\AbstractController {
 	}
 
 	protected function add() {
-		$this->getPage->setSubTitle('New User');
+		$this->getPage()->setSubTitle('New User');
 		$this->setViewName("users.add");
 	}
 

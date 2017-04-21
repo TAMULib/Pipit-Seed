@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
   email varchar(120) NOT NULL,
   name_first varchar(30) NOT NULL,
   name_last varchar(30) NOT NULL,
-  isadmin tinyint(1) NOT NULL DEFAULT '0',
+  role int(11) NOT NULL DEFAULT '0',
   inactive tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS users (
 -- --------------------------------------------------------
 
 -- Default password is 'changethis' --
-INSERT INTO users (username, password, email, name_first, name_last, isadmin, inactive) VALUES
+INSERT INTO users (username, password, email, name_first, name_last, role, inactive) VALUES
 ('admin', '$2y$10$XWsCnoBSNE2P6YKD3ERqZ.Wjwtq1RR5fgXKVcRYaWtmpkPGbYyi.G', '', 'Adam', 'Admin', 1, 0);
 
 

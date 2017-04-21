@@ -58,11 +58,9 @@ if ($controllerName != 'default' && is_file("{$config['PATH_APP']}resources/js/{
 					<ul class="nav navbar-nav">
 <?php
 if ($globalUser->isLoggedIn()) {
-    foreach ($pages as $sitePage) {
-		echo '			<li'.(($controllerName == $sitePage->getPath()) ? ' class="active"':'').'>';
-        if ($sitePage->getAccessLevel() == SECURITY_ADMIN && $globalUser->isAdmin()) {
-			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}admin/{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
-        } else if ($sitePage->getAccessLevel() < SECURITY_ADMIN) {
+    foreach ($pages as $controllerKey=>$sitePage) {
+		echo '			<li'.(($controllerKey == $controllerName) ? ' class="active"':'').'>';
+        if (!$sitePage->isAdminPage() || ($sitePage->isAdminPage() && $globalUser->isAdmin())) {
 			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
         }
 		echo '			</li>';
