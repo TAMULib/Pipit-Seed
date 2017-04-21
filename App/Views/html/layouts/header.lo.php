@@ -24,8 +24,9 @@ if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
         </script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>default.js"></script>
 <?php
-if (is_file("{$config['PATH_APP']}resources/js/{$controllerName}.js")) {
-    echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
+if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
+    echo '
+        <script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
 }
 ?>
         <link rel="shortcut icon" href="ico/favicon.ico">
