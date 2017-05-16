@@ -71,3 +71,16 @@ CREATE TABLE IF NOT EXISTS widgets_parts (
   PRIMARY KEY (id),
   KEY widgetid (widgetid)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `simple_repo_ex`
+--
+
+CREATE TABLE IF NOT EXISTS `simple_repo_ex` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

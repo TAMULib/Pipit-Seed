@@ -1,5 +1,5 @@
 <?php
-echo '<form class="do-submit" name="addbuilding" method="POST" action="'.$app_http.'">
+echo '<form class="do-submit" name="addwidget" method="POST" action="'.$app_http.'">
 			<input type="hidden" name="action" value="insert" />
 			<div class="form-group">
 				<label for="widget[name]">Name</label>

@@ -45,7 +45,6 @@ class WidgetsController extends Core\AbstractController {
 
 	protected function add() {
 		$this->getPage()->setSubTitle('New Widget');
-		$this->getSite()->getViewRenderer()->setView("widgets.add");
 		$this->setViewName('widgets.add');
 	}
 
@@ -62,7 +61,7 @@ class WidgetsController extends Core\AbstractController {
 		$this->getPage()->setSubTitle('Update Widget');
 		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['id']) && is_numeric($data['id']) && ($widget = $this->widgetsRepo->getById($data['id']))) {
-			$widget = $this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
+			$this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
 			$this->setViewName('widgets.edit');
 		}
 	}
