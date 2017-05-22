@@ -1,5 +1,5 @@
 <?php
 include "../../App/Config/config.php";
-$controllerConfig = array('name'=>'SimpleRepo');
+$controllerConfig = array('name'=>'DynamicRepo');
 include PATH_LIB."loader.php";
 ?>

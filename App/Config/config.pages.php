@@ -22,12 +22,13 @@ Further configuration of the current SitePage is often done by the controllers t
 
 $sitePages = array(
 			"widgets" => new CoreClasses\CoreSitePage("widgets","widgets",SECURITY_USER),
-			"SimpleRepo" => new CoreClasses\CoreSitePage("simple repo","simple-repo",SECURITY_USER),
+			"DynamicRepo" => new CoreClasses\CoreSitePage("dynamic repo","dynamic-repo",SECURITY_USER),
 			"users" => new CoreClasses\CoreSitePage("users","users",SECURITY_ADMIN));
 
 /* If you'd like to use the app level SitePage, use the following $sitePages array, instead, and uncomment the AppClasses namespace alias at the top of this file.
 $sitePages = array(
 			"widgets" => new AppClasses\SitePage("widgets","widgets",SECURITY_USER),
+			"DynamicRepo" => new AppClasses\SitePage("dynamic repo","dynamic-repo",SECURITY_USER),
 			"users" => new AppClasses\SitePage("users","users",SECURITY_ADMIN));
 */
 ?>

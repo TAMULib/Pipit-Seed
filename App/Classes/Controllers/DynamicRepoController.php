@@ -3,13 +3,13 @@ namespace App\Classes\Controllers;
 use App\Classes\Data as AppClasses;
 use Core\Classes as Core;
 
-class SimpleRepoController extends Core\AbstractController {
-	private $simpleRepo;
+class DynamicRepoController extends Core\AbstractController {
+	private $dynamicRepo;
 
 	protected function configure() {
-		$this->simpleRepo = $this->getSite()->getDataRepository("SimpleRepoExample");
+		$this->dynamicRepo = $this->getSite()->getDataRepository("DynamicRepoExample");
 
-		$this->getPage()->setTitle("Manage Simple Repo Entries");
+		$this->getPage()->setTitle("Manage Dynamic Repo Example Entries");
 		$this->getPage()->setOptions(array(
 								array("name"=>"list"),
 								array("name"=>"add","action"=>"add","modal"=>true)));
@@ -18,7 +18,7 @@ class SimpleRepoController extends Core\AbstractController {
 
 	protected function remove() {
 		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['id']) && is_numeric($data['id']) && $this->simpleRepo->removeById($data['id'])) {
+		if (isset($data['id']) && is_numeric($data['id']) && $this->dynamicRepo->removeById($data['id'])) {
 			$this->getSite()->addSystemMessage('Repo entry removed');
 		} else {
 			$this->getSite()->addSystemError('Error removing repo entry');
@@ -27,7 +27,7 @@ class SimpleRepoController extends Core\AbstractController {
 
 	protected function insert() {
 		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['entry']) && $this->simpleRepo->add($data['entry'])) {
+		if (isset($data['entry']) && $this->dynamicRepo->add($data['entry'])) {
 			$this->getSite()->addSystemMessage('Repo entry added');
 		} else {
 			$this->getSite()->addSystemError('Error adding repo entry');
@@ -41,7 +41,7 @@ class SimpleRepoController extends Core\AbstractController {
 
 	protected function update() {
 		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['entry']) && (isset($data['id']) && is_numeric($data['id'])) && $this->simpleRepo->update($data['id'],$data['entry'])) {
+		if (isset($data['entry']) && (isset($data['id']) && is_numeric($data['id'])) && $this->dynamicRepo->update($data['id'],$data['entry'])) {
 			$this->getSite()->addSystemMessage('Entry updated');
 		} else {
 			$this->getSite()->addSystemError('Error updating entry');
@@ -51,7 +51,7 @@ class SimpleRepoController extends Core\AbstractController {
 	protected function edit() {
 		$this->getPage()->setSubTitle('Update Entry');
 		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['id']) && is_numeric($data['id']) && ($entry = $this->simpleRepo->getById($data['id']))) {
+		if (isset($data['id']) && is_numeric($data['id']) && ($entry = $this->dynamicRepo->getById($data['id']))) {
 			$this->getSite()->getViewRenderer()->registerViewVariable("entry",$entry);
 			$this->setViewName('entries.edit');
 		}
@@ -60,7 +60,7 @@ class SimpleRepoController extends Core\AbstractController {
 	protected function search() {
 		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['term'])) {
-			$this->getSite()->getViewRenderer()->registerViewVariable("entries",$this->simpleRepo->search($data['term']));
+			$this->getSite()->getViewRenderer()->registerViewVariable("entries",$this->dynamicRepo->search($data['term']));
 			$this->setViewName("entries.list");
 		} else {
 			$site->addSystemError('There was an error with the search');
@@ -69,7 +69,7 @@ class SimpleRepoController extends Core\AbstractController {
 
 	protected function loadDefault() {
 		$this->getPage()->setSubTitle('Repo Entries');
-		$this->getSite()->getViewRenderer()->registerViewVariable("entries", $this->simpleRepo->get());
+		$this->getSite()->getViewRenderer()->registerViewVariable("entries", $this->dynamicRepo->get());
 		$this->setViewName('entries.list');
 	}
 }

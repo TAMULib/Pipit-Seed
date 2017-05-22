@@ -5,8 +5,8 @@ SET time_zone = "+00:00";
 --
 -- Database: 'phpseedapp'
 --
-CREATE DATABASE IF NOT EXISTS pipit DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE pipit;
+CREATE DATABASE IF NOT EXISTS pipit_seed DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE pipit_seed;
 
 -- --------------------------------------------------------
 
@@ -75,10 +75,10 @@ CREATE TABLE IF NOT EXISTS widgets_parts (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `simple_repo_ex`
+-- Table structure for table `dynamic_repo_ex`
 --
 
-CREATE TABLE IF NOT EXISTS `simple_repo_ex` (
+CREATE TABLE IF NOT EXISTS `dynamic_repo_ex` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL,
   `description` text,
