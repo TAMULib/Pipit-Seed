@@ -26,12 +26,18 @@ if (WITH_COMPOSER) {
 	require PATH_CORE_LIB.'/autoload.php';
 }
 
+require_once PATH_CONFIG.'config.dynamic.repositories.php';
 require_once PATH_CONFIG.'config.pages.php';
 
 $config = get_defined_constants(true)["user"];
 if (!empty($sitePages)) {
 	$config['sitePages'] = $sitePages;
 	unset($sitePages);
+}
+
+if (!empty($GLOBALS[DYNAMIC_REPOSITORY_KEY])) {
+	$config[DYNAMIC_REPOSITORY_KEY] = $GLOBALS[DYNAMIC_REPOSITORY_KEY];
+	unset($GLOBALS[DYNAMIC_REPOSITORY_KEY]);
 }
 
 if (!empty($forceRedirectUrl)) {
