@@ -27,6 +27,14 @@ a,a:focus, a:hover {
 	width: auto;
 }
 
+.form-inline input[type=file] {
+	display: inline-block;
+}
+
+.do-upload {
+	margin: 30px 0;
+}
+
 #subNav .col {
 	margin-top: 8px;
 }
