@@ -29,4 +29,27 @@ function buildUploadForm($baseUrl,$modalContext=null,$action='upload',$subaction
 			</form>';
 	return $html;
 }
+
+function buildHTMLUploadForm($baseUrl,$modalContext=null,$action='upload',$subaction=null,$hiddenFields=null) {
+	$html = '<form class="do-upload vertical-spacer-bottom " name="upload" method="POST" action="'.$baseUrl.'">';
+	if ($modalContext) {
+		$html .= '<input type="hidden" name="modal_context" value="'.$modalContext.'" />';
+	}
+	$html .= '	<input type="hidden" name="action" value="'.$action.'" />';
+	if ($subaction) {
+		$html .= '<input type="hidden" name="subaction" value="'.$subaction.'" />';
+	}
+	if ($hiddenFields) {
+		foreach ($hiddenFields as $field) {
+			$html .= '<input type="hidden" name="'.$field['name'].'" value="'.$field['value'].'" />';
+		}
+	}
+
+	$html .= '	<input class="do-file-gloss" type="hidden" name="fileGloss" value="" />
+				<img class="do-file-preview" src="" />
+				<input class="inline-block" type="file" name="file_input" />
+				<input class="inline-block small" type="submit" name="submitupload" value="Upload File" />
+			</form>';
+	return $html;
+}
 ?>
