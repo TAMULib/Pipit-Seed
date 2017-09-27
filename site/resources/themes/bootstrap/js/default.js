@@ -159,7 +159,8 @@ $(document).ready(function() {
 			formUpdate($form).done(function() {
 				$restorableFileInput.val("");
 				$form[0].reset();
-				$form.prepend($restorableFileInput);
+				$(".do-file-preview").css("backgroundImage","none");
+				$restorableFileInput.insertBefore($form.find("input[type=submit]"));
 			});
 		});
 
@@ -168,6 +169,25 @@ $(document).ready(function() {
 		}
 
 		return false;
+	});
+
+	$(".container,#theModal").on("change",".do-upload input[type=file]",function() {
+		var $fileInput = $(this);
+		var newFile = $fileInput[0].files[0];
+		var fileName = newFile.name;
+		var previewableTypes = ['jpg', 'jpeg', 'png', 'gif'];
+		if (previewableTypes.indexOf(fileName.split('.').pop().toLowerCase()) > -1) {
+			var fileReader = new FileReader();
+
+			fileReader.addEventListener("load", function() {
+				$(".do-file-preview").css("backgroundImage","url("+fileReader.result+")");
+			});
+
+			if (newFile) {
+				fileReader.readAsDataURL(newFile);
+			}
+
+		}
 	});
 
 });

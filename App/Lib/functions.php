@@ -23,7 +23,7 @@ function buildUploadForm($baseUrl,$modalContext=null,$action='upload',$subaction
 	}
 
 	$html .= '	<input class="do-file-gloss" type="hidden" name="fileGloss" value="" />
-				<img class="do-file-preview" src="" />
+				<div class="do-file-preview"></div>
 				<input class="inline-block" type="file" name="file_input" />
 				<input class="btn btn-default" type="submit" name="submitupload" value="Upload File" />
 			</form>';
@@ -46,7 +46,7 @@ function buildHTMLUploadForm($baseUrl,$modalContext=null,$action='upload',$subac
 	}
 
 	$html .= '	<input class="do-file-gloss" type="hidden" name="fileGloss" value="" />
-				<img class="do-file-preview" src="" />
+				<div class="do-file-preview"></div>
 				<input class="inline-block" type="file" name="file_input" />
 				<input class="inline-block small" type="submit" name="submitupload" value="Upload File" />
 			</form>';

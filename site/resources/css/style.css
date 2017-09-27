@@ -69,6 +69,19 @@ input[type=submit].small, a.button-small {
 	border-radius: 6px;
 }
 
+.do-file-preview {
+	border: 2px solid #dfdfdf;
+	background-color: #F8F8F8;
+	background-position: center center;
+	background-repeat: no-repeat;
+ 	background-size: cover;
+	width: 80px;
+	height: 80px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 20px;
+}
+
 a.button {
 	cursor: pointer;
 }
