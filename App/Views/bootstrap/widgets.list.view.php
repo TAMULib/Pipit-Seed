@@ -13,6 +13,7 @@ if ($parameters['widgets']) {
 					<td>{$widget['name']}</td>
 					<td class=\"capitalize\">";
 echo '					<a class="btn btn-default do-loadmodal" href="'.$app_http.'?action=parts&widgetid='.$widget['id'].'">Parts</a>
+						<a class="btn btn-default do-loadmodal" href="'.$app_http.'?action=attachments&widgetid='.$widget['id'].'">Attachments</a>
 						<a class="btn btn-default do-loadmodal" href="'.$app_http.'?action=edit&id='.$widget['id'].'">Edit</a>
 						<form class="inline-block do-submit-confirm" name="removewidget" method="POST" action="'.$app_http.'">
 							<input type="hidden" name="action" value="remove" />
