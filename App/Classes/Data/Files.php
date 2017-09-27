@@ -17,8 +17,9 @@ class Files extends CoreData\AbstractDataBaseRepository {
 	}
 
 	private function getBaseSql() {
-		return "SELECT f.*,ft.name AS type_name FROM {$this->primaryTable} f
-				LEFT JOIN files_types ft ON f.id=f.typeid";
+		return "SELECT f.*,ft.name AS type_name,u.username,u.name_first,u.name_last FROM {$this->primaryTable} f
+				LEFT JOIN files_types ft ON f.id=f.typeid
+				LEFT JOIN users u ON f.userid=u.id";
 	}
 
 	private function getOrderedQueryResults($sql,$bindparams=null) {
@@ -27,11 +28,22 @@ class Files extends CoreData\AbstractDataBaseRepository {
 		}
 
 		$fileRows = $this->queryWithIndex($sql,$this->primaryKey,null,$bindparams);
-
 		if ($fileRows) {
+			$fileRows = array_map(array($this,'processUserData'),$fileRows);
 			return $this->getFileInstances($fileRows);
 		}
 		return $fileRows;
+	}
+
+	private function processUserData($fileData) {
+		$userKeys = array('userid','username','name_last','name_first');
+		$userData = array();
+		foreach ($userKeys as $key) {
+			$userData[$key] = $fileData[$key];
+			unset($fileData[$key]);
+		}
+		$fileData['userData'] = $userData;
+		return $fileData;
 	}
 
 	public function get() {
@@ -39,10 +51,12 @@ class Files extends CoreData\AbstractDataBaseRepository {
 	}
 
 	public function getById($id) {
-		if (!($fileData = parent::getById($id))) {
+		$sql = $this->getBaseSql()." WHERE f.{$this->primaryKey}=:id";
+		$temp = $this->executeQuery($sql,array(":id"=>$id));
+		if (!$temp[0]) {
 			return false;
 		}
-		return $this->getFileInstance($fileData);
+		return $this->getFileInstance($this->processUserData($temp[0]));
 	}
 
 	public function getByRelatedIdAndType($relatedId,$typeId) {
@@ -62,7 +76,7 @@ class Files extends CoreData\AbstractDataBaseRepository {
 	}
 
 	private function getFileInstance($data) {
-		return new DatabaseFile($data['name'],$data['path'],$data['file_type'],$data['gloss'],$data['id'],$data['uploaded'],$data['userid'],$data['typeid'],$data['type_name'],$data['relatedid']);
+		return new DatabaseFile($data['name'],$data['path'],$data['file_type'],$data['gloss'],$data['id'],$data['uploaded'],$data['userData'],$data['typeid'],$data['type_name'],$data['relatedid']);
 	}
 
 	private function getFileInstances($fileRows) {

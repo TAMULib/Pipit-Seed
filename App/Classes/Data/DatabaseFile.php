@@ -10,15 +10,15 @@ use Core\Classes\Data as CoreData;
 class DatabaseFile extends CoreData\SimpleFile {
 	private $id;
 	private $uploadDate;
-	private $uploaderId;
+	private $uploaderData;
 	private $typeId;
 	private $relatedId;
 
-	public function __construct($fileName,$filePath,$fileType=null,$gloss=null,$id,$uploadDate,$uploaderId,$typeId,$relatedId) {
+	public function __construct($fileName,$filePath,$fileType=null,$gloss=null,$id,$uploadDate,$uploaderData,$typeId,$relatedId) {
 		parent::__construct($fileName,$filePath,$fileType,$gloss);
 		$this->setId($id);
 		$this->setUploadDate($uploadDate);
-		$this->setUploaderId($uploaderId);
+		$this->setUploaderData($uploaderData);
 		$this->setTypeId($typeId);
 		$this->setRelatedId($relatedId);
 	}
@@ -31,8 +31,8 @@ class DatabaseFile extends CoreData\SimpleFile {
 		$this->uploadDate = $uploadDate;
 	}
 
-	protected function setUploaderId($uploaderId) {
-		$this->uploaderId = $uploaderId;
+	protected function setUploaderData($uploaderData) {
+		$this->uploaderData = $uploaderData;
 	}
 
 	protected function setTypeId($typeId) {
@@ -51,8 +51,8 @@ class DatabaseFile extends CoreData\SimpleFile {
 		return $this->uploadDate;
 	}
 
-	public function getUploaderId() {
-		return $this->uploaderId;
+	public function getUploaderData() {
+		return $this->uploaderData;
 	}
 
 	public function getTypeId() {

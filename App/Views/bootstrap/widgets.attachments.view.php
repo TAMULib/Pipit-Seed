@@ -10,12 +10,16 @@ if ($parameters['attachments']) {
 	<table class="table">
 		<tr>
 			<th>Attachment</th>
+			<th>Uploaded</th>
+			<th>Uploader</th>
 			<th>Actions</th>
 		</tr>
 <?php
 	foreach ($parameters['attachments'] as $file) {
 		echo "<tr>
 					<td>{$file->getGloss()}</td>
+					<td>{$file->getUploadDate()}</td>
+					<td>{$file->getUploaderData()['username']}</td>
 					<td class=\"capitalize\">
 						<a class=\"btn btn-default\" href=\"{$app_http}?action=attachments&subaction=download&attachmentid={$file->getId()}\">Download</a>";
 		echo '			<form class="inline-block do-submit-confirm" name="removeattachment" method="POST" action="'.$app_http.'">
