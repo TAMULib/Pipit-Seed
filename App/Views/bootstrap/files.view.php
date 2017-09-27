@@ -32,7 +32,7 @@ if ($parameters['files']) {
 	</table>
 <?php
 } else {
-	echo "There doesn't seem to be any files in this directory. Upload some?";
+	echo "<div>There doesn't seem to be any files in this directory. Upload some?</div>";
 }
 ?>
 </div>
