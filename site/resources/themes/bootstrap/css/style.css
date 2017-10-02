@@ -27,6 +27,27 @@ a,a:focus, a:hover {
 	width: auto;
 }
 
+.form-inline input[type=file] {
+	display: inline-block;
+}
+
+.do-upload {
+	margin: 30px 0;
+}
+
+.do-file-preview {
+	border: 2px solid #dfdfdf;
+	background-color: #F8F8F8;
+	background-position: center center;
+	background-repeat: no-repeat;
+ 	background-size: cover;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 20px;
+}
+
 #subNav .col {
 	margin-top: 8px;
 }

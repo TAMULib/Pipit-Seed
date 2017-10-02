@@ -37,25 +37,25 @@ function updateSystemOutput(data) {
 function formUpdate(theForm) {
 	var isModal = (theForm.parents("#theModal").length != 0) ? true:false;
 	
-	$.ajax({
-		type: "POST",
-		url: app_http,
-		data: theForm.serialize()
-	}).done(function(data) {
-		updateSystemOutput(data);
-		if (isModal) {
-			var $modalContextField = theForm.children("input[name=modal_context]");
-			if ($modalContextField) {
-				var modalContext = $modalContextField.val();
-			}
-			if (!modalContext) {
-				$("#theModal .do-close").click();
-			} else {
-				$("#theModal .do-results").load(app_http+"?"+modalContext+" #modalContent .do-results > *");
-			}
-		}
-		$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *");
-	});
+	return $.ajax({
+				type: "POST",
+				url: app_http,
+				data: theForm.serialize()
+			}).done(function(data) {
+				updateSystemOutput(data);
+				if (isModal) {
+					var $modalContextField = theForm.children("input[name=modal_context]");
+					if ($modalContextField) {
+						var modalContext = $modalContextField.val();
+					}
+					if (!modalContext) {
+						$("#theModal .do-close").click();
+					} else {
+						$("#theModal .do-results").load(app_http+"?"+modalContext+" #modalContent .do-results > *");
+					}
+				}
+				$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *");
+			});
 }
 
 /** Form Validation functions **/
@@ -242,6 +242,58 @@ $(document).ready(function() {
 	$(".container,#theModal").on("submit",".do-get",function() {
 		formGet($(this));
 		return false;
+	});
+
+	//AJAX form submission for file uploads
+	//Listens for submission of any form with a .do-upload class
+	$(".container,#theModal").on("submit",".do-upload",function() {
+		var $form = $(this);
+		var $fileInput = $form.children("input[type=file]");
+		var $restorableFileInput = $fileInput.clone(true);
+		var newFile = $fileInput[0].files[0];
+		var fileName = newFile.name;
+		$fileInput.remove();
+
+		var fileReader = new FileReader();
+
+		fileReader.addEventListener("load", function() {
+			var $inputNewFile = $("<input>")
+			               .attr("type", "hidden")
+			               .attr("name", "newFile").val(fileReader.result);
+			$(".do-file-gloss").val(fileName);
+			$form.append($inputNewFile);
+			formUpdate($form).done(function() {
+				$restorableFileInput.val("");
+				$form[0].reset();
+				$(".do-file-preview").css("backgroundImage","none");
+				$restorableFileInput.insertBefore($form.find("input[type=submit]"));
+			});
+		});
+
+		if (newFile) {
+			fileReader.readAsDataURL(newFile);
+		}
+
+		return false;
+	});
+
+	$(".container,#theModal").on("change",".do-upload input[type=file]",function() {
+		var $fileInput = $(this);
+		var newFile = $fileInput[0].files[0];
+		var fileName = newFile.name;
+		var previewableTypes = ['jpg', 'jpeg', 'png', 'gif'];
+		if (previewableTypes.indexOf(fileName.split('.').pop().toLowerCase()) > -1) {
+			var fileReader = new FileReader();
+
+			fileReader.addEventListener("load", function() {
+				$(".do-file-preview").css("backgroundImage","url("+fileReader.result+")");
+			});
+
+			if (newFile) {
+				fileReader.readAsDataURL(newFile);
+			}
+
+		}
 	});
 
 	//Confirmation interceptor
