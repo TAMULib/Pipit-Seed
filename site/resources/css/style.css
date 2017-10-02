@@ -82,6 +82,39 @@ input[type=submit].small, a.button-small {
 	margin-right: 20px;
 }
 
+.do-submit-validate .alert {
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background-color: #efefef;
+	color: red;
+	text-align: center;
+    display: none;
+	margin: 6px;
+	padding: 4px;
+}
+
+.do-submit-validate .do-error .alert {
+    display: block;
+}
+
+.do-validate label:before {
+    content: '*';
+}
+
+/* This works, except when content is loaded by AJAX so, there's a two selector hack below to accomplish the same thing
+div.form-group:not(.do-validate) label:after {
+    content: ' (optional)';
+}
+*/
+
+div.form-group label:after {
+    content: ' (optional)';
+}
+
+div.do-validate label:after {
+    content: '';
+}
+
 a.button {
 	cursor: pointer;
 }

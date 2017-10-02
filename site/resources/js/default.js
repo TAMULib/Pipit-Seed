@@ -58,6 +58,123 @@ function formUpdate(theForm) {
 			});
 }
 
+/** Form Validation functions **/
+
+function showErrorMessage($formInput) {
+  $parentGroup = $formInput.closest(".form-group");
+  $parentGroup.addClass("do-error");
+  if ($parentGroup.find(".alert").length == 0) {
+    $formLabel = $parentGroup.children("label");
+    $formLabel.after('<div class="alert alert-danger">Please enter a value for '+$formLabel.text()+'</div>');
+  }
+  var inputType = $formInput[0].type;
+  if (inputType == 'radio') {
+    $radios = $formInput.closest("form").find("input[name='"+$formInput.attr("name")+"']");
+    $radios[0].focus();
+    $radios.change(function() {
+      if ($(this).is(":checked")) {
+        $parentGroup.removeClass("do-error");
+      }
+    });
+  } else {
+    $formInput.focus();
+    $formInput.change(function() {
+      if ($formInput.val()) {
+        $parentGroup.removeClass("do-error");
+      }
+    });
+  }
+}
+
+function validateText($formInput) {
+  if ($formInput.val()) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateRadio($formInput,checkedRadios) {
+  if ((checkedRadios.indexOf($formInput.attr("name")) > -1) || $formInput.parents("form").find("input[name='"+$formInput.attr("name")+"']:checked").length > 0) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateSelect($formInput) {
+  if ($formInput.children("option:selected").length > 0) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateNumeric($formInput) {
+  if ($.isNumeric($formInput.val()) && $formInput.val() >= 1) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateForm($form) {
+	var errorFlag = false;
+	var checkedRadios = [];
+	//gather all form-group elements that also have the do-validate class
+	$form.find("div.form-group.do-validate").each(function() {
+		//find any input or select elements within the form-group
+		$validateInput = $(this).find("input,select");
+		//only validate if the element is visible to the user
+		if ($(this).is(":visible")) {
+			//check for custom validation function referenced in the data-validator attribute
+			var validator = $(this).data("validator");
+			if (validator && typeof window[validator] == 'function') {
+				if (!window[validator]($validateInput)) {
+					errorFlag = true;
+					return false;
+				}
+			// if no custom validator is defined, fall back to the generic validation functions
+			} else {
+				var inputType = $validateInput[0].type;
+				switch (inputType) {
+					case 'text':
+						if (!validateText($validateInput)) {
+							errorFlag = true;
+							return false;
+						}
+					break;
+					case 'radio':
+						if (!validateRadio($validateInput,checkedRadios)) {
+							errorFlag = true;
+							return false;
+						}
+						checkedRadios.push($validateInput.attr("name"));
+					break;
+					case 'select-multiple':
+						if (!validateSelect($validateInput)) {
+							errorFlag = true;
+							return false;
+						}
+					break;
+					case 'select-one':
+						if (!validateSelect($validateInput)) {
+							errorFlag = true;
+							return false;
+						}
+					break;
+				}
+			}
+		}
+	});
+	if (errorFlag) {
+		return false;
+	}
+	return true;
+}
+
+/** End form validation functions **/
+
 /**
 * Requests results from the server and updates .do-results with the results
 **/
@@ -108,6 +225,15 @@ $(document).ready(function() {
 	//Listens for submission of any form with a .do-submit class
 	$(".container,#theModal").on("submit",".do-submit",function() {
 		formUpdate($(this));
+		return false;
+	});
+
+	//AJAX validated form submission for updating app data
+	//Listens for submission of any form with a .do-submit-validate class
+	$(".container,#theModal").on("submit",".do-submit-validate",function() {
+		if (validateForm($(this))) {
+			formUpdate($(this));
+		}
 		return false;
 	});
 
