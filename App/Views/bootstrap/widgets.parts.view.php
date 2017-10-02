@@ -25,8 +25,7 @@ if ($parameters['parts']) {
 		echo "<tr>
 					<td>{$part['name']}</td>
 					<td class=\"capitalize\">";
-echo '					<a class="btn btn-default do-loadmodal" href="'.$app_http.'?action=parts&subaction=edit&partid='.$part['id'].'">Edit</a>
-						<form class="inline-block do-submit-confirm" name="removepart" method="POST" action="'.$app_http.'">
+echo '					<form class="inline-block do-submit-confirm" name="removepart" method="POST" action="'.$app_http.'">
 							<input type="hidden" name="modal_context" value="'.$modalContext.'" />
 							<input type="hidden" name="action" value="parts" />
 							<input type="hidden" name="subaction" value="remove" />

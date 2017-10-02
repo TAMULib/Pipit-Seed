@@ -52,11 +52,11 @@ CREATE TABLE IF NOT EXISTS users_ldap (
 --
 
 CREATE TABLE IF NOT EXISTS widgets (
-  id int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  description text NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+  `description` text NOT NULL,
+  `part_count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
