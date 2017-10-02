@@ -34,3 +34,11 @@ a,a:focus, a:hover {
 #searchStatus a {
 	display: none;
 }
+
+.do-submit-validate .alert {
+    display: none;
+}
+
+.do-submit-validate .do-error .alert {
+    display: block;
+}
