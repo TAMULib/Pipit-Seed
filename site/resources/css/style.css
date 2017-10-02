@@ -69,6 +69,21 @@ input[type=submit].small, a.button-small {
 	border-radius: 6px;
 }
 
+.do-submit-validate .alert {
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	background-color: #efefef;
+	color: red;
+	text-align: center;
+    display: none;
+	margin: 6px;
+	padding: 4px;
+}
+
+.do-submit-validate .do-error .alert {
+    display: block;
+}
+
 a.button {
 	cursor: pointer;
 }
