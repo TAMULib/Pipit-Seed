@@ -38,26 +38,143 @@ function updateSystemOutput(data) {
 function formUpdate(theForm) {
 	var isModal = (theForm.parents("#theModal").length != 0) ? true:false;
 	
-	$.ajax({
-		type: "POST",
-		url: app_http,
-		data: theForm.serialize()
-	}).done(function(data) {
-		updateSystemOutput(data);
-		if (isModal) {
-			var $modalContextField = theForm.children("input[name=modal_context]");
-			if ($modalContextField) {
-				var modalContext = $modalContextField.val();
-			}
-			if (!modalContext) {
-				$('#theModal').modal('hide');
+	return $.ajax({
+				type: "POST",
+				url: app_http,
+				data: theForm.serialize()
+			}).done(function(data) {
+				updateSystemOutput(data);
+				if (isModal) {
+					var $modalContextField = theForm.children("input[name=modal_context]");
+					if ($modalContextField) {
+						var modalContext = $modalContextField.val();
+					}
+					if (!modalContext) {
+						$('#theModal').modal('hide');
+					} else {
+						$("#theModal .do-results").load(app_http+"?"+modalContext+" #modalContent .do-results > *");
+					}
+				}
+				$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *");
+			});
+}
+
+/** Form Validation functions **/
+
+function showErrorMessage($formInput) {
+  $parentGroup = $formInput.closest(".form-group");
+  $parentGroup.addClass("do-error");
+  if ($parentGroup.find(".alert").length == 0) {
+    $formLabel = $parentGroup.children("label");
+    $formLabel.after('<div class="alert alert-danger">Please enter a value for '+$formLabel.text()+'</div>');
+  }
+  var inputType = $formInput[0].type;
+  if (inputType == 'radio') {
+    $radios = $formInput.closest("form").find("input[name='"+$formInput.attr("name")+"']");
+    $radios[0].focus();
+    $radios.change(function() {
+      if ($(this).is(":checked")) {
+        $parentGroup.removeClass("do-error");
+      }
+    });
+  } else {
+    $formInput.focus();
+    $formInput.change(function() {
+      if ($formInput.val()) {
+        $parentGroup.removeClass("do-error");
+      }
+    });
+  }
+}
+
+function validateText($formInput) {
+  if ($formInput.val()) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateRadio($formInput,checkedRadios) {
+  if ((checkedRadios.indexOf($formInput.attr("name")) > -1) || $formInput.parents("form").find("input[name='"+$formInput.attr("name")+"']:checked").length > 0) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateSelect($formInput) {
+  if ($formInput.children("option:selected").length > 0) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateNumeric($formInput) {
+  if ($.isNumeric($formInput.val()) && $formInput.val() >= 1) {
+    return true;
+  }
+  showErrorMessage($formInput);
+  return false;
+}
+
+function validateForm($form) {
+	var errorFlag = false;
+	var checkedRadios = [];
+	//gather all form-group elements that also have the do-validate class
+	$form.find("div.form-group.do-validate").each(function() {
+		//find any input or select elements within the form-group
+		$validateInput = $(this).find("input,select");
+		//only validate if the element is visible to the user
+		if ($(this).is(":visible")) {
+			//check for custom validation function referenced in the data-validator attribute
+			var validator = $(this).data("validator");
+			if (validator && typeof window[validator] == 'function') {
+				if (!window[validator]($validateInput)) {
+					errorFlag = true;
+					return false;
+				}
+			// if no custom validator is defined, fall back to the generic validation functions
 			} else {
-				$("#theModal .do-results").load(app_http+"?"+modalContext+" #modalContent .do-results > *");
+				var inputType = $validateInput[0].type;
+				switch (inputType) {
+					case 'text':
+						if (!validateText($validateInput)) {
+							errorFlag = true;
+							return false;
+						}
+					break;
+					case 'radio':
+						if (!validateRadio($validateInput,checkedRadios)) {
+							errorFlag = true;
+							return false;
+						}
+						checkedRadios.push($validateInput.attr("name"));
+					break;
+					case 'select-multiple':
+						if (!validateSelect($validateInput)) {
+							errorFlag = true;
+							return false;
+						}
+					break;
+					case 'select-one':
+						if (!validateSelect($validateInput)) {
+							errorFlag = true;
+							return false;
+						}
+					break;
+				}
 			}
 		}
-		$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *");
 	});
+	if (errorFlag) {
+		return false;
+	}
+	return true;
 }
+
+/** End form validation functions **/
 
 /**
 * Requests results from the server and updates .do-results with the results
@@ -132,11 +249,71 @@ $(document).ready(function() {
 		return false;
 	});
 
+	//AJAX validated form submission for updating app data
+	//Listens for submission of any form with a .do-submit-validate class
+	$(".container,#theModal").on("submit",".do-submit-validate",function() {
+		if (validateForm($(this))) {
+			formUpdate($(this));
+		}
+		return false;
+	});
+
 	//AJAX form submission for getting app data
 	//Listens for submission of any form with a .do-get class
 	$(".container,#theModal").on("submit",".do-get",function() {
 		formGet($(this));
 		return false;
+	});
+
+	//AJAX form submission for file uploads
+	//Listens for submission of any form with a .do-upload class
+	$(".container,#theModal").on("submit",".do-upload",function() {
+		var $form = $(this);
+		var $fileInput = $form.children("input[type=file]");
+		var $restorableFileInput = $fileInput.clone(true);
+		var newFile = $fileInput[0].files[0];
+		var fileName = newFile.name;
+		$fileInput.remove();
+
+		var fileReader = new FileReader();
+		fileReader.addEventListener("load", function() {
+			var $inputNewFile = $("<input>")
+			               .attr("type", "hidden")
+			               .attr("name", "newFile").val(fileReader.result);
+			$(".do-file-gloss").val(fileName);
+			$form.append($inputNewFile);
+			formUpdate($form).done(function() {
+				$restorableFileInput.val("");
+				$form[0].reset();
+				$(".do-file-preview").css("backgroundImage","none");
+				$restorableFileInput.insertBefore($form.find("input[type=submit]"));
+			});
+		});
+
+		if (newFile) {
+			fileReader.readAsDataURL(newFile);
+		}
+
+		return false;
+	});
+
+	$(".container,#theModal").on("change",".do-upload input[type=file]",function() {
+		var $fileInput = $(this);
+		var newFile = $fileInput[0].files[0];
+		var fileName = newFile.name;
+		var previewableTypes = ['jpg', 'jpeg', 'png', 'gif'];
+		if (previewableTypes.indexOf(fileName.split('.').pop().toLowerCase()) > -1) {
+			var fileReader = new FileReader();
+
+			fileReader.addEventListener("load", function() {
+				$(".do-file-preview").css("backgroundImage","url("+fileReader.result+")");
+			});
+
+			if (newFile) {
+				fileReader.readAsDataURL(newFile);
+			}
+
+		}
 	});
 
 });

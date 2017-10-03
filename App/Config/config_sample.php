@@ -109,6 +109,10 @@ define('SECURITY_PUBLIC',-1);
 define('SECURITY_USER',0);
 define('SECURITY_ADMIN',1);
 
+//Sets where user uploaded files will be placed
+//Core\Classes\Helpers\FileManager is dependent on this configuration
+define('UPLOAD_PATH',PATH_ROOT.'uploads/');
+
 ?>
 
 

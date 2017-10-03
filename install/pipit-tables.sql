@@ -52,11 +52,11 @@ CREATE TABLE IF NOT EXISTS users_ldap (
 --
 
 CREATE TABLE IF NOT EXISTS widgets (
-  id int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  description text NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+  `description` text NOT NULL,
+  `part_count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -84,3 +84,69 @@ CREATE TABLE IF NOT EXISTS `dynamic_repo_ex` (
   `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE IF NOT EXISTS `files` (
+  `id` int(11) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `path` varchar(40) NOT NULL,
+  `uploaded` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `userid` int(11) NOT NULL,
+  `typeid` int(11) NOT NULL,
+  `relatedid` int(11) NOT NULL,
+  `gloss` varchar(40) NOT NULL,
+  `file_type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `typeid_relatedid` (`typeid`,`relatedid`) USING BTREE;
+
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- Table structure for table `files_types`
+--
+
+CREATE TABLE IF NOT EXISTS `files_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `files_types`
+--
+
+INSERT INTO `files_types` (`id`, `name`) VALUES
+(1, 'Widget Attachments');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `files_types`
+--
+ALTER TABLE `files_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `files_types`
+--
+ALTER TABLE `files_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

@@ -27,10 +27,57 @@ a,a:focus, a:hover {
 	width: auto;
 }
 
+.form-inline input[type=file] {
+	display: inline-block;
+}
+
+.do-upload {
+	margin: 30px 0;
+}
+
+.do-file-preview {
+	border: 2px solid #dfdfdf;
+	background-color: #F8F8F8;
+	background-position: center center;
+	background-repeat: no-repeat;
+ 	background-size: cover;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 20px;
+}
+
 #subNav .col {
 	margin-top: 8px;
 }
 
 #searchStatus a {
 	display: none;
+}
+
+.do-submit-validate .alert {
+    display: none;
+}
+
+.do-submit-validate .do-error .alert {
+    display: block;
+}
+
+.do-validate label:before {
+    content: '*';
+}
+
+/* This works, except when content is loaded by AJAX so, there's a two selector hack below to accomplish the same thing
+div.form-group:not(.do-validate) label:after {
+    content: ' (optional)';
+}
+*/
+
+div.form-group label:after {
+    content: ' (optional)';
+}
+
+div.do-validate label:after {
+    content: '';
 }
