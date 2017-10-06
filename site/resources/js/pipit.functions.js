@@ -50,6 +50,14 @@ function formUpdate(theForm) {
 			});
 }
 
+/**
+* Requests results from the server and updates .do-results with the results
+**/
+
+function formGet(theForm) {
+	$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *",theForm.serialize());
+}
+
 /** Form Validation functions **/
 
 function showErrorMessage($formInput) {
@@ -166,11 +174,3 @@ function validateForm($form) {
 }
 
 /** End form validation functions **/
-
-/**
-* Requests results from the server and updates .do-results with the results
-**/
-
-function formGet(theForm) {
-	$("#modalContent .do-results").load(app_http+" #modalContent .do-results > *",theForm.serialize());
-}

@@ -84,6 +84,7 @@ $(document).ready(function() {
 		return false;
 	});
 
+	//generates an image preview on file selection if the form contains an element with a .do-file-preview class
 	$(".container,#theModal").on("change",".do-upload input[type=file]",function() {
 		var $fileInput = $(this);
 		var newFile = $fileInput[0].files[0];

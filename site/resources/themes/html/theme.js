@@ -6,6 +6,7 @@ function runDatePicker() {
 	$(".date-input-db").datepicker({ dateFormat: 'yy-mm-dd' });
 }
 
+//this function is called by pipit functions when they need to close an open modal
 function closeModal() {
 	$("#theModal .do-close").click();
 }
