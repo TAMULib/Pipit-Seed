@@ -98,6 +98,10 @@ function buildPageHeader($page,$app_http) {
     }
     return $html;
 }
+
+$themeFolder = 'bootstrap';
+$themePath = $config['PATH_THEMES'].$themeFolder.'/';
+
 ?>
 
 <!DOCTYPE html>
@@ -114,10 +118,10 @@ function buildPageHeader($page,$app_http) {
 		<!-- Bootstrap CSS - Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>helpers.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_THEMES'];?>bootstrap/css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo $themePath;?>css/style.css" media="screen"/>
 <?php
-if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
-    echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
+if (is_file("{$config['PATH_APP']}site/resources/themes/{$themeFolder}/css/{$controllerName}.css")) {
+    echo '<link rel="stylesheet" type="text/css" href="'.$themePath.'css/'.$controllerName.'.css" media="screen"/>';
 }
 ?>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>vendor/jquery.min.js"></script>
@@ -129,11 +133,12 @@ if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
         </script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.functions.js"></script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.listeners.js"></script>
-        <script type="text/javascript" src="<?php echo $config['PATH_THEMES'];?>bootstrap/js/theme.js"></script>
+        <script type="text/javascript" src="<?php echo $themePath;?>js/theme.js"></script>
 <?php
-if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
-    echo '
-        <script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
+if (is_file("{$config['PATH_APP']}site/resources/themes/{$themeFolder}/js/{$controllerName}.js")) {
+    echo '<script type="text/javascript" src="'.$themePath.'js/'.$controllerName.'.js"></script>';
+} else if (is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
+    echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
 }
 
 ?>

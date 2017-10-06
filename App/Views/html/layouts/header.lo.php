@@ -77,6 +77,9 @@ function buildPageHeader($page,$app_http) {
     }
     return $html;
 }
+
+$themeFolder = 'html';
+$themePath = $config['PATH_THEMES'].$themeFolder.'/';
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,10 +93,10 @@ function buildPageHeader($page,$app_http) {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href="iphone-icon.png" />
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>helpers.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_THEMES'];?>html/css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo $themePath;?>css/style.css" media="screen"/>
 <?php
-if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
-    echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
+if (is_file("{$config['PATH_APP']}site/resources/themes/{$themeFolder}/css/{$controllerName}.css")) {
+    echo '<link rel="stylesheet" type="text/css" href="'.$themePath.'css/'.$controllerName.'.css" media="screen"/>';
 }
 ?>
         <link rel="stylesheet" href="<?php echo $config['PATH_JS'];?>vendor/jquery-ui-1.11.2.custom/jquery-ui.css">
@@ -104,7 +107,7 @@ if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
         </script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.functions.js"></script>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.listeners.js"></script>
-        <script type="text/javascript" src="<?php echo $config['PATH_THEMES'];?>html/js/theme.js"></script>
+        <script type="text/javascript" src="<?php echo $themePath;?>js/theme.js"></script>
 <?php
 if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
     echo '
