@@ -111,7 +111,7 @@ if (is_file("{$config['PATH_APP']}site/resources/themes/{$themeFolder}/css/{$con
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.listeners.js"></script>
         <script type="text/javascript" src="<?php echo $themePath;?>js/theme.js"></script>
 <?php
-if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
+if (is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
     echo '
         <script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
 }
