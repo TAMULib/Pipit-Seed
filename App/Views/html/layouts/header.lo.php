@@ -1,5 +1,5 @@
 <?php
-function buildPageOptions($page) {
+function buildPageOptions($page,$app_http) {
     $html = '';
     if ($page->getOptions()) {
         $size = sizeof($page->getOptions());
@@ -42,10 +42,12 @@ function buildSearchForm($page,$app_http) {
     return $html;
 }
 
-function buildSystemMessages($systemMessages) {
+function buildSystemMessages($systemMessages=null) {
     $html = '  <div class="sysMsg">';
-    foreach ($systemMessages as $sysMsg) {
-        $html .= "    <h4 class=\"alert\">{$sysMsg->getMessage()}</h4>";
+    if ($systemMessages) {
+        foreach ($systemMessages as $sysMsg) {
+            $html .= "    <h4 class=\"alert\">{$sysMsg->getMessage()}</h4>";
+        }
     }
     return $html .'</div>';
 }
@@ -67,7 +69,7 @@ function buildPageHeader($page,$app_http) {
                 <h1>{$page->getTitle()}</h1>";
         }
         $html .= '<div>';
-        $html .= buildPageOptions($page);
+        $html .= buildPageOptions($page,$app_http);
         $html .= buildSearchForm($page,$app_http);
         $html .= '</div>';
     }

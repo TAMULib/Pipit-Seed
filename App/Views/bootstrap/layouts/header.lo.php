@@ -51,15 +51,17 @@ function buildSearchForm($page,$app_http) {
     return $html;
 }
 
-function buildSystemMessages($systemMessages) {
+function buildSystemMessages($systemMessages=null) {
     $html = '<div class="sysMsg col-sm-10">';
-    foreach ($systemMessages as $sysMsg) {
-        $typeMap = array('error'=>'danger');
-        $msgType = $sysMsg->getType();
-        if (array_key_exists($msgType,$typeMap)) {
-            $msgType = $typeMap[$msgType];
+    if ($systemMessages) {
+        foreach ($systemMessages as $sysMsg) {
+            $typeMap = array('error'=>'danger');
+            $msgType = $sysMsg->getType();
+            if (array_key_exists($msgType,$typeMap)) {
+                $msgType = $typeMap[$msgType];
+            }
+            $html .= "  <div class=\"alert alert-{$msgType}\">{$sysMsg->getMessage()}</div>";
         }
-        $html .= "  <div class=\"alert alert-{$msgType}\">{$sysMsg->getMessage()}</div>";
     }
     $html .= '</div>';
     return $html;
@@ -69,7 +71,7 @@ function buildUserDashboard($globalUser,$path_http) {
     $html = '';
     if ($globalUser->isLoggedIn()) {
         $html .= '<div class="col-sm-2">
-                    <span>Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globalUser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</span>
+                    <span>Hi <a href="'.$path_http.'user.php?action=edit">'.$globalUser->getProfileValue('username').'</a>! (<a href="'.$path_http.'user.php?action=logout">logout</a>)</span>
                 </div>';
     }
     return $html;
