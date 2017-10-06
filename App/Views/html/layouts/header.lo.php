@@ -97,8 +97,14 @@ $themePath = $config['PATH_THEMES'].$themeFolder.'/';
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>helpers.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="<?php echo $themePath;?>css/style.css" media="screen"/>
 <?php
+$controllerCss = null;
 if (is_file("{$config['PATH_APP']}site/resources/themes/{$themeFolder}/css/{$controllerName}.css")) {
-    echo '<link rel="stylesheet" type="text/css" href="'.$themePath.'css/'.$controllerName.'.css" media="screen"/>';
+    $controllerCss = "{$themePath}css/{$controllerName}.css";
+} else if (is_file("{$config['PATH_APP']}site/resources/css/{$controllerName}.css")) {
+    $controllerCss = "{$config['PATH_CSS']}{$controllerName}.css";
+}
+if ($controllerCss) {
+    echo '<link rel="stylesheet" type="text/css" href="'.$controllerCss.'" media="screen"/>';
 }
 ?>
         <link rel="stylesheet" href="<?php echo $config['PATH_JS'];?>vendor/jquery-ui-1.11.2.custom/jquery-ui.css">
@@ -111,9 +117,14 @@ if (is_file("{$config['PATH_APP']}site/resources/themes/{$themeFolder}/css/{$con
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.listeners.js"></script>
         <script type="text/javascript" src="<?php echo $themePath;?>js/theme.js"></script>
 <?php
-if (is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
-    echo '
-        <script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
+$controllerJs = null;
+if (is_file("{$config['PATH_APP']}site/resources/themes/{$themeFolder}/js/{$controllerName}.js")) {
+    $controllerJs = "{$themePath}js/{$controllerName}.js";
+} else if (is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
+    $controllerJs = "{$config['PATH_JS']}{$controllerName}.js";
+}
+if ($controllerJs) {
+    echo '<script type="text/javascript" src="'.$controllerJs.'"></script>';
 }
 ?>
         <link rel="shortcut icon" href="ico/favicon.ico">
