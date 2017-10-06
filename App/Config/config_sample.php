@@ -42,10 +42,10 @@ define('PATH_VIEWS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Views/");
 //web paths
 //These don't need to be touched unless you want to put your site assets somewhere else
 define('PATH_RESOURCES', PATH_HTTP."resources/");
-define('PATH_THEMES', PATH_RESOURCES."/themes/");
-define('PATH_CSS', PATH_RESOURCES."/css/");
-define('PATH_JS', PATH_RESOURCES."/js/");
-define('PATH_IMAGES', PATH_RESOURCES."/images/");
+define('PATH_THEMES', PATH_RESOURCES."themes/");
+define('PATH_CSS', PATH_RESOURCES."css/");
+define('PATH_JS', PATH_RESOURCES."js/");
+define('PATH_IMAGES', PATH_RESOURCES."images/");
 
 //Setting this to true triggers an attempt to log in to a CAS server using the following CAS configuration
 define('USECAS', false);
