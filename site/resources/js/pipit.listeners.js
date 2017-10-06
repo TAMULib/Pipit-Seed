@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 	//show the clear search option when a search is active
 	$("#searchResults").click(function() {
-		$("#searchStatus a.hidden").fadeIn("fast");
+		$("#searchStatus a.hidden").removeClass("hidden");
 	});
 
 	//reset the search results and UI
@@ -16,7 +16,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		$("#searchTerm").val("");
 		$("#doSearch").submit();
-		$(this).fadeOut("fast");
+		$(this).addClass("hidden");
 	});
 
 	//AJAX form submission with confirmation

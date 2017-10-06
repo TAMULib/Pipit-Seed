@@ -52,10 +52,6 @@ a,a:focus, a:hover {
 	margin-top: 8px;
 }
 
-#searchStatus a {
-	display: none;
-}
-
 .do-submit-validate .alert {
     display: none;
 }
