@@ -18,15 +18,16 @@ if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
     echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
 }
 ?>
-        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>vendor/jquery.min.js"></script>
 		<!-- Bootstrap JS - Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             var app_http = '<?php echo $app_http;?>';
         </script>
-        <script type="text/javascript" src="<?php echo $config['PATH_THEMES'];?>bootstrap/js/default.js"></script>
-
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.functions.js"></script>
+        <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>pipit.listeners.js"></script>
+        <script type="text/javascript" src="<?php echo $config['PATH_THEMES'];?>bootstrap/js/theme.js"></script>
 <?php
 if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
     echo '
