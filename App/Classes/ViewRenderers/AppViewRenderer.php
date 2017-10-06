@@ -3,7 +3,8 @@ namespace App\Classes\ViewRenderers;
 use Core\Classes as CoreClasses;
 
 /** 
-*	An implementation of the ViewRenderer interface for Bootstrap based theming
+*	An app level customization of Core's HTMLViewRenderer to demonstrate extending a Core ViewRender implementation
+*	Specific ViewRenderers can be activated by setting the VIEW_RENDERER constant to the class name of the desired ViewRenderer
 *	
 *	Looks in the 'bootstrap' Views directory for a given view first. If not found, falls back to the 'html' directory.
 *
@@ -11,7 +12,7 @@ use Core\Classes as CoreClasses;
 */
 
 
-class BootstrapViewRenderer extends CoreClasses\ViewRenderers\HTMLViewRenderer {
+class AppViewRenderer extends CoreClasses\ViewRenderers\HTMLViewRenderer {
 	protected $viewPaths = array('bootstrap','html');
 
 	public function __construct($globalUser,$pages,$data,$controllerName) {
