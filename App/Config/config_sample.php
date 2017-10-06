@@ -39,6 +39,10 @@ define('PATH_CORE_LIB', PATH_CORE.str_replace('\\', '/', NAMESPACE_CORE)."Lib/")
 define('PATH_CONTROLLERS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Controllers/");
 define('PATH_VIEWS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Views/");
 
+//Sets where user uploaded files will be placed
+//Core\Classes\Helpers\FileManager is dependent on this configuration
+define('UPLOAD_PATH',PATH_ROOT.'uploads/');
+
 //web paths
 //These don't need to be touched unless you want to put your site assets somewhere else
 define('PATH_RESOURCES', PATH_HTTP."resources/");
@@ -100,7 +104,10 @@ define("LOG_LEVEL",3);
 //define('SITE_CLASS','Site');
 
 //If VIEW_RENDERER is not set, the app will use the HTMLViewRenderer by default.
-define('VIEW_RENDERER','BootstrapViewRenderer');
+//define('VIEW_RENDERER','AppViewRenderer');
+
+//Define the theme folder HTMLViewRenderer based ViewRenderers should use (default options are 'bootstrap' and 'html')
+define('ACTIVE_THEME','bootstrap');
 
 //When set, CoreSite will try to use NAMESPACE_APP\Classes\Data\USER_CLASS as the globalUser
 //define('USER_CLASS','User');
@@ -108,10 +115,6 @@ define('VIEW_RENDERER','BootstrapViewRenderer');
 define('SECURITY_PUBLIC',-1);
 define('SECURITY_USER',0);
 define('SECURITY_ADMIN',1);
-
-//Sets where user uploaded files will be placed
-//Core\Classes\Helpers\FileManager is dependent on this configuration
-define('UPLOAD_PATH',PATH_ROOT.'uploads/');
 
 ?>
 
