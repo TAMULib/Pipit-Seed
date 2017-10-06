@@ -1,3 +1,105 @@
+<?php
+function buildPageOptions($page,$app_http) {
+    $html = '';
+    if ($page->getOptions()) {
+        $html .= "  <div class=\"col col-sm-8\">
+                    <ul class=\"nav nav-pills\">";
+        foreach ($page->getOptions() as $subnav) {
+            $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
+            $html .= "      <li".(($isCurrent) ? ' class="active"':'').">
+                            <a class=\"capitalize".(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>
+                        </li>";
+        }
+        $html .= '      </ul>
+                </div>';
+    }
+    return $html;
+}
+
+function buildPrimaryNavigation($pages,$controllerName,$path_http,$globalUser) {
+    $html = '';
+    if ($globalUser->isLoggedIn()) {
+        foreach ($pages as $controllerKey=>$sitePage) {
+            $html .= '          <li'.(($controllerKey == $controllerName) ? ' class="active"':'').'>';
+            if (!$sitePage->isAdminPage() || ($sitePage->isAdminPage() && $globalUser->isAdmin())) {
+                $html .= "<a class=\"capitalize\" href=\"{$path_http}{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
+            }
+            $html .= '          </li>';
+        }
+    }
+    return $html;
+}
+
+function buildSearchForm($page,$app_http) {
+    $html = '';
+    if ($page->isSearchable()) {
+        $html .= '<div class="col col-sm-4">
+                    <form id="doSearch" class="do-get" name="search" method="POST" action="'.$app_http.'">
+                        <input type="hidden" name="action" value="search" />
+                        <div class="input-group">
+                            <input id="searchTerm" class="form-control" type="text" name="term" />';
+        $html .= '              <span class="input-group-btn">
+                                <input id="searchResults" class="btn btn-default" type="submit" name="submit" value="Search" />
+                            </span>
+                        </div>
+                        <div class="inline-block" id="searchStatus">
+                            <a class="hidden" href="#clearSearch">clear search</a>
+                        </div>
+                    </form>
+                </div>';
+    }
+    return $html;
+}
+
+function buildSystemMessages($systemMessages) {
+    $html = '<div class="sysMsg col-sm-10">';
+    foreach ($systemMessages as $sysMsg) {
+        $typeMap = array('error'=>'danger');
+        $msgType = $sysMsg->getType();
+        if (array_key_exists($msgType,$typeMap)) {
+            $msgType = $typeMap[$msgType];
+        }
+        $html .= "  <div class=\"alert alert-{$msgType}\">{$sysMsg->getMessage()}</div>";
+    }
+    $html .= '</div>';
+    return $html;
+}
+
+function buildUserDashboard($globalUser,$path_http) {
+    $html = '';
+    if ($globalUser->isLoggedIn()) {
+        $html .= '<div class="col-sm-2">
+                    <span>Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globalUser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</span>
+                </div>';
+    }
+    return $html;
+}
+
+function buildPageHeader($page,$app_http) {
+    $html = '';
+    if (!empty($page)) {
+        if ($page->getTitle()) {
+            $html .= "
+                <div class=\"page-header\">
+                    <h1>{$page->getTitle()}</h1>
+                </div>";
+        }
+
+        $html .= '<div id="subNav" class="row">';
+        $html .= buildPageOptions($page,$app_http);
+        $html .= buildSearchForm($page,$app_http);
+        $html .= '</div>';
+    }
+    $html .= '    <div id="modalContent">';
+    if (!empty($page) && $page->getSubTitle()) {
+        $html .= "  <div class=\"page-header\">
+                        <h1 class=\"capitalize\"><small>{$page->getSubTitle()}</small></h1>
+                    </div>";
+    }
+    return $html;
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,15 +160,7 @@ if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources
 				<div>
 					<ul class="nav navbar-nav">
 <?php
-if ($globalUser->isLoggedIn()) {
-    foreach ($pages as $controllerKey=>$sitePage) {
-		echo '			<li'.(($controllerKey == $controllerName) ? ' class="active"':'').'>';
-        if (!$sitePage->isAdminPage() || ($sitePage->isAdminPage() && $globalUser->isAdmin())) {
-			echo "<a class=\"capitalize\" href=\"{$config['PATH_HTTP']}{$sitePage->getPath()}/\">{$sitePage->getName()}</a>";
-        }
-		echo '			</li>';
-    }
-}
+echo buildPrimaryNavigation($pages,$controllerName,$config['PATH_HTTP'],$globalUser);
 ?>
 					</ul>
         		</div>
@@ -74,71 +168,11 @@ if ($globalUser->isLoggedIn()) {
 		</nav>
         <div id="systemBar" class="clearfix">
 <?php
-//present any system messages
-echo '      <div class="sysMsg col-sm-10">';
-if (isset($systemMessages)) {
-	foreach ($systemMessages as $sysMsg) {
-        $typeMap = array('error'=>'danger');
-        $msgType = $sysMsg->getType();
-        if (array_key_exists($msgType,$typeMap)) {
-            $msgType = $typeMap[$msgType];
-        }
-		echo "    <div class=\"alert alert-{$msgType}\">{$sysMsg->getMessage()}</div>";
-	}
-}
-echo '      </div>';
-if ($globalUser->isLoggedIn()) {
-    echo '  <div class="col-sm-2">
-				<span>Hi <a href="'.$config['PATH_HTTP'].'user.php?action=edit">'.$globalUser->getProfileValue('username').'</a>! (<a href="'.$config['PATH_HTTP'].'user.php?action=logout">logout</a>)</span>
-			</div>';
-}
-
+echo buildSystemMessages($systemMessages);
+echo buildUserDashboard($globalUser,$config['PATH_HTTP']);
 ?>
         </div>
         <div class="container clearfix">
 <?php
-if (!empty($page)) {
-    if ($page->getTitle()) {
-		echo "<div class=\"page-header\">
-            	<h1>{$page->getTitle()}</h1>
-			</div>";
-    }
-
-    echo '  <div id="subNav" class="row">';
-    if ($page->getOptions()) {
-        echo "  <div class=\"col col-sm-8\">
-					<ul class=\"nav nav-pills\">";
-    	foreach ($page->getOptions() as $subnav) {
-            $isCurrent = (isset($data['action']) && isset($subnav['action']) && $subnav['action'] == $data['action']) || (!isset($data['action']) && !isset($subnav['action']));
-    		echo "		<li".(($isCurrent) ? ' class="active"':'').">
-							<a class=\"capitalize".(isset($subnav['modal']) ? ' do-loadmodal':'')."\" href=\"{$app_http}".((isset($subnav['action'])) ? "?action={$subnav['action']}":'')."\">{$subnav['name']}</a>
-						</li>";
-    	}
-        echo '  	</ul>
-				</div>';
-    }
-    if ($page->isSearchable()) {
-        echo '  <div class="col col-sm-4">
-					<form id="doSearch" class="do-get" name="search" method="POST" action="'.$app_http.'">
-                    	<input type="hidden" name="action" value="search" />
-						<div class="input-group">
-                    		<input id="searchTerm" class="form-control" type="text" name="term" />';
-        echo '		      	<span class="input-group-btn">
-								<input id="searchResults" class="btn btn-default" type="submit" name="submit" value="Search" />
-							</span>
-						</div>
-	                    <div class="inline-block" id="searchStatus">
-	                        <a class="hidden" href="#clearSearch">clear search</a>
-	                    </div>
-	                </form>
-				</div>';
-    }
-    echo '    </div>';
-}
-echo '		<div id="modalContent">';
-if (!empty($page) && $page->getSubTitle()) {
-	echo "     	<div class=\"page-header\">
-					<h1 class=\"capitalize\"><small>{$page->getSubTitle()}</small></h1>
-				</div>";
-}
+echo buildPageHeader($page,$app_http);
 ?>
