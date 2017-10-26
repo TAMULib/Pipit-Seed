@@ -7,7 +7,7 @@ use Core\Classes\Data as CoreData;
 *	@author Jason Savell <jsavell@library.tamu.edu>
 */
 
-class Widgets extends CoreData\AbstractDataBaseRepository {
+class Widgets extends CoreData\PageableDataBaseRepository {
 	public function __construct() {
 		parent::__construct('widgets','id','name',null,array("name"));
 	}
