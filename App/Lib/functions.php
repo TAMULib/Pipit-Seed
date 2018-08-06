@@ -52,4 +52,3 @@ function buildHTMLUploadForm($baseUrl,$modalContext=null,$action='upload',$subac
 			</form>';
 	return $html;
 }
-?>

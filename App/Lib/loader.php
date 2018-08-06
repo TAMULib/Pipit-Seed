@@ -61,4 +61,3 @@ if (!empty($config['LOADER_CLASS'])) {
 	$logger->debug("Using Default Loader Class: CoreLoader");
 }
 $siteLoader->load();
-?>
