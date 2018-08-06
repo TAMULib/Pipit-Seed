@@ -1,10 +1,10 @@
 <?php
 
 //This must be set to the real file path to the base directory of your server, e.g. '/var/www/html/'
-define('PATH_ROOT', '/'); 
+define('PATH_ROOT', '/');
 
-define('APP_NAME', 'The PipitSeed App'); 
-define('APP_DIRECTORY', 'Pipit-seed'); 
+define('APP_NAME', 'The PipitSeed App');
+define('APP_DIRECTORY', 'Pipit-seed');
 
 define('PATH_APP', PATH_ROOT.APP_DIRECTORY.'/');
 
@@ -12,11 +12,11 @@ define('WITH_COMPOSER',true);
 
 
 if (WITH_COMPOSER) {
-	define('VENDOR_DIRECTORY', 'vendor'); 
-	define('PATH_VENDOR', PATH_APP.VENDOR_DIRECTORY.'/');
-	define('PATH_CORE', PATH_VENDOR.'tamu-lib/pipit/');
+    define('VENDOR_DIRECTORY', 'vendor');
+    define('PATH_VENDOR', PATH_APP.VENDOR_DIRECTORY.'/');
+    define('PATH_CORE', PATH_VENDOR.'tamu-lib/pipit/');
 } else {
-	define('PATH_CORE', PATH_ROOT.'Pipit/');
+    define('PATH_CORE', PATH_ROOT.'Pipit/');
 }
 
 //Optionally change this to your domain or IP.
