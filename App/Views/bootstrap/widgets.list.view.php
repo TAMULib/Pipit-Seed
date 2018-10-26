@@ -30,7 +30,9 @@ echo "
 ?>
 	</table>
 
-
+<?php
+	if ($resultsPage->getPageCount() > 1) {
+?>
 <nav aria-label="Page navigation">
   <ul class="pagination">
     <li<?php if ($prevDisabled) { echo ' class="disabled"';}?>>
@@ -51,6 +53,7 @@ for ($x=1;$x <= $resultsPage->getPageCount();$x++) {
   </ul>
 </nav>
 <?php
+	}
 } else {
 	echo 'No widgets, yet!';
 }
