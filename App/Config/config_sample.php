@@ -115,7 +115,3 @@ define('ACTIVE_THEME','bootstrap');
 define('SECURITY_PUBLIC',-1);
 define('SECURITY_USER',0);
 define('SECURITY_ADMIN',1);
-
-?>
-
-
