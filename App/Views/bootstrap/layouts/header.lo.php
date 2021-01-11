@@ -117,8 +117,8 @@ $themePath = $config['PATH_THEMES'].$themeFolder.'/';
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="apple-touch-icon" href="iphone-icon.png" />
-		<!-- Bootstrap CSS - Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- Bootstrap CSS - Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>helpers.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="<?php echo $themePath;?>css/style.css" media="screen"/>
 <?php
@@ -133,8 +133,8 @@ if ($controllerCss) {
 }
 ?>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>vendor/jquery.min.js"></script>
-		<!-- Bootstrap JS - Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS - Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             var app_http = '<?php echo $app_http;?>';
@@ -157,31 +157,31 @@ if ($controllerJs) {
     </head>
     <body>
         <div id="theModal" class="modal fade" tabindex="-1" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-            		<div class="modal-header">
-                		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body"></div>
-				</div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
             </div>
         </div>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<span class="navbar-brand"><?php echo $config["APP_NAME"];?></span>
-				</div>
-				<div>
-					<ul class="nav navbar-nav">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand"><?php echo $config["APP_NAME"];?></span>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
 <?php
 echo buildPrimaryNavigation($pages,$controllerName,$config['PATH_HTTP'],$globalUser);
 ?>
-					</ul>
-        		</div>
-			</div>
-		</nav>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div id="systemBar" class="clearfix">
 <?php
 echo buildSystemMessages($systemMessages);
