@@ -32,4 +32,3 @@ $sitePages = array(
             "DynamicRepo" => new AppClasses\SitePage("dynamic repo","dynamic-repo",SECURITY_USER),
             "users" => new AppClasses\SitePage("users","users",SECURITY_ADMIN));
 */
-?>

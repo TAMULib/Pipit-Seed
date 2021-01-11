@@ -8,4 +8,3 @@ if (!is_file($configFile)) {
     $controllerConfig = array('name'=>'default');
     include PATH_LIB."loader.php";
 }
-?>

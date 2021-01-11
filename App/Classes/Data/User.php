@@ -9,4 +9,3 @@ use Core\Classes\Data as CoreData;
 */
 class User extends CoreData\UserDB {
 }
-?>

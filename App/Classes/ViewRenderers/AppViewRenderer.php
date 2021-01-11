@@ -34,4 +34,3 @@ class AppViewRenderer extends CoreClasses\ViewRenderers\HTMLViewRenderer {
         return false;
     }
 }
-?>

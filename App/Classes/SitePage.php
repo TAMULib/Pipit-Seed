@@ -13,4 +13,3 @@ use Core\Classes as CoreClasses;
 */
 class SitePage extends CoreClasses\CoreSitePage {
 }
-?>
