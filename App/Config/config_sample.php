@@ -1,10 +1,10 @@
 <?php
 
 //This must be set to the real file path to the base directory of your server, e.g. '/var/www/html/'
-define('PATH_ROOT', '/'); 
+define('PATH_ROOT', '/var/www/html/');
 
-define('APP_NAME', 'The PipitSeed App'); 
-define('APP_DIRECTORY', 'Pipit-seed'); 
+define('APP_NAME', 'The PipitSeed App');
+define('APP_DIRECTORY', 'Pipit-Seed');
 
 define('PATH_APP', PATH_ROOT.APP_DIRECTORY.'/');
 
@@ -12,7 +12,7 @@ define('WITH_COMPOSER',true);
 
 
 if (WITH_COMPOSER) {
-	define('VENDOR_DIRECTORY', 'vendor'); 
+	define('VENDOR_DIRECTORY', 'vendor');
 	define('PATH_VENDOR', PATH_APP.VENDOR_DIRECTORY.'/');
 	define('PATH_CORE', PATH_VENDOR.'tamu-lib/pipit/');
 } else {
@@ -80,7 +80,7 @@ define('LDAP_USERNAME_KEY', NULL);
 define('DB_USER', '');
 define('DB_PASSWORD', '');
 define('DB_HOST', '');
-define('DB_DATABASE', 'phpseedapp');
+define('DB_DATABASE', 'pipit_seed');
 define("DB_DSN", 'mysql:host='.DB_HOST.';dbname='.DB_DATABASE);
 
 //If switching to a non-MySQL flavor of SQL, expect to troubleshoot
@@ -117,5 +117,3 @@ define('SECURITY_USER',0);
 define('SECURITY_ADMIN',1);
 
 ?>
-
-
