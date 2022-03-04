@@ -169,7 +169,7 @@ class WidgetsController extends Core\AbstractController {
 	protected function loadDefault() {
 		$this->getPage()->setSubTitle('Widgets');
 		$page = isset($this->getSite()->getSanitizedInputData()['page']) ? $this->getSite()->getSanitizedInputData()['page']:1;
-		$this->getSite()->getViewRenderer()->registerViewVariable("pagedWidgets", $this->widgetsRepo->pagedGet($page));
+		$this->getSite()->getViewRenderer()->registerViewVariable("pagedWidgets", $this->widgetsRepo->pagedGet($page,5));
 		$this->setViewName('widgets.list');
 	}
 }
