@@ -53,24 +53,47 @@ function buildHTMLUploadForm($baseUrl,$modalContext=null,$action='upload',$subac
     return $html;
 }
 
-function buildResultsPageNav($app_http,$resultsPage) {
+function buildResultsPageNav($app_http,$resultsPage,$queryParams=null) {
     $prevDisabled = ($resultsPage->getPage() <= 1) ? true:false;
     $nextDisabled = ($resultsPage->getPage() == $resultsPage->getPageCount()) ? true:false;
+    $pageQuery = 'page=';
+    if ($queryParams) {
+        $pageQuery = "?{$queryParams}&{$pageQuery}";
+    } else {
+        $pageQuery = "?{$pageQuery}";
+    }
+
+    $navUrl = $app_http.$pageQuery;
+
+    if ($prevDisabled) {
+        $prevPage = $resultsPage->getPage();
+        $prevClass = ' class="disabled"';
+    } else {
+        $prevPage = $resultsPage->getPage()-1;
+        $prevClass = '';
+    }
+    if ($nextDisabled) {
+        $nextPage = $resultsPage->getPage();
+        $nextClass = ' class="disabled"';
+    } else {
+        $nextPage = $resultsPage->getPage()+1;
+        $nextClass = '';
+    }
     $html =
     '<nav aria-label="Page navigation">
         <ul class="pagination">
-            <li'.($prevDisabled ?	' class="disabled"':'').'>
-                <a href="'.$app_http.'?page='.($resultsPage->getPage()-1).'>" aria-label="Previous">
+            <li'.$prevClass.'>
+                <a href="'.$navUrl.$prevPage.'" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>';
     for ($x=1;$x <= $resultsPage->getPageCount();$x++) {
         $html .= '
-            <li><a href="'.$app_http.'?page='.$x.'">'.$x.'</a></li>';
+            <li><a href="'.$navUrl.$x.'">'.$x.'</a></li>';
     }
     $html .= '
-            <li'.($nextDisabled ? ' class="disabled"':'').'>
-                <a href="'.$app_http.'?page='.($resultsPage->getPage()+1).'" aria-label="Next">
+            <li'.$nextClass.'>
+                <a href="'.$navUrl.$nextPage.'" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

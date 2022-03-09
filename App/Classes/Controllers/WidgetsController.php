@@ -159,8 +159,13 @@ class WidgetsController extends Core\AbstractController {
 	protected function search() {
 		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['term'])) {
-			$this->getSite()->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
-			$this->setViewName("widgets.list");
+			if ($data['term']) {
+				$this->getSite()->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
+				$this->setViewName("widgets.list");
+			} else {
+				$this->loadDefault();
+			}
+
 		} else {
 			$this->getSite()->addSystemError('There was an error with the search');
 		}
@@ -169,7 +174,7 @@ class WidgetsController extends Core\AbstractController {
 	protected function loadDefault() {
 		$this->getPage()->setSubTitle('Widgets');
 		$page = isset($this->getSite()->getSanitizedInputData()['page']) ? $this->getSite()->getSanitizedInputData()['page']:1;
-		$this->getSite()->getViewRenderer()->registerViewVariable("pagedWidgets", $this->widgetsRepo->pagedGet($page,5));
+		$this->getSite()->getViewRenderer()->registerViewVariable("pagedWidgets", $this->widgetsRepo->pagedGet($page));
 		$this->setViewName('widgets.list');
 	}
 }
