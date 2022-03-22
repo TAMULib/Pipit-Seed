@@ -89,7 +89,7 @@ function buildResultsPageNav($app_http,$resultsPage,$queryParams=null) {
             </li>';
     for ($x=1;$x <= $resultsPage->getPageCount();$x++) {
         $html .= '
-            <li><a href="'.$navUrl.$x.'">'.$x.'</a></li>';
+            <li'.(($resultsPage->getPage()==$x) ? ' class="active"':'').'><a href="'.$navUrl.$x.'">'.$x.'</a></li>';
     }
     $html .= '
             <li'.$nextClass.'>
