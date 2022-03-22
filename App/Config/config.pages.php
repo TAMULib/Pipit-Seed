@@ -9,10 +9,10 @@ The $sitePages array represents the app's pages, which are used to generate user
 The keys correspond to controller names.
 
 Each entry should have a corresponding user reachable file (with an arbitrary relative directory path) that:
-	1. Includes the config file
-	2. Does one of the following:
-		a. Defines a controller and includes the loader 
-		b. Redirects with $forceRedirectUrl
+    1. Includes the config file
+    2. Does one of the following:
+        a. Defines a controller and includes the loader
+        b. Redirects with $forceRedirectUrl
 
 It's possible to have user (public) reachable files that aren't represented in this array by using the DefaultController and setting the
 view with $controllerConfig. They simply won't have a navigation link in the HTML header.
@@ -21,15 +21,14 @@ Further configuration of the current SitePage is often done by the controllers t
 */
 
 $sitePages = array(
-			"widgets" => new CoreClasses\CoreSitePage("widgets","widgets",SECURITY_USER),
-			"DynamicRepo" => new CoreClasses\CoreSitePage("dynamic repo","dynamic-repo",SECURITY_USER),
-			"files" => new CoreClasses\CoreSitePage("File Manager","files",SECURITY_USER),
-			"users" => new CoreClasses\CoreSitePage("users","users",SECURITY_ADMIN));
+            "widgets" => new CoreClasses\CoreSitePage("widgets","widgets",SECURITY_USER),
+            "DynamicRepo" => new CoreClasses\CoreSitePage("dynamic repo","dynamic-repo",SECURITY_USER),
+            "files" => new CoreClasses\CoreSitePage("File Manager","files",SECURITY_USER),
+            "users" => new CoreClasses\CoreSitePage("users","users",SECURITY_ADMIN));
 
 /* If you'd like to use the app level SitePage, use the following $sitePages array, instead, and uncomment the AppClasses namespace alias at the top of this file.
 $sitePages = array(
-			"widgets" => new AppClasses\SitePage("widgets","widgets",SECURITY_USER),
-			"DynamicRepo" => new AppClasses\SitePage("dynamic repo","dynamic-repo",SECURITY_USER),
-			"users" => new AppClasses\SitePage("users","users",SECURITY_ADMIN));
+            "widgets" => new AppClasses\SitePage("widgets","widgets",SECURITY_USER),
+            "DynamicRepo" => new AppClasses\SitePage("dynamic repo","dynamic-repo",SECURITY_USER),
+            "users" => new AppClasses\SitePage("users","users",SECURITY_ADMIN));
 */
-?>

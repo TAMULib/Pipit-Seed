@@ -1,7 +1,7 @@
 <?php
 /**
-*	Any global functions should be placed, here.
-*	The core functions included provide an autoloader that handles the including of Classes and Interfaces
+*   Any global functions should be placed, here.
+*   The core functions included provide an autoloader that handles the including of Classes and Interfaces
 *
 */
 
@@ -101,4 +101,3 @@ function buildResultsPageNav($app_http,$resultsPage,$queryParams=null) {
     </nav>';
     return $html;
 }
-?>

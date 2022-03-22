@@ -16,7 +16,7 @@ if (WITH_COMPOSER) {
 	define('PATH_VENDOR', PATH_APP.VENDOR_DIRECTORY.'/');
 	define('PATH_CORE', PATH_VENDOR.'tamu-lib/pipit/');
 } else {
-	define('PATH_CORE', PATH_ROOT.'Pipit/');
+    define('PATH_CORE', PATH_ROOT.'Pipit/');
 }
 
 //Optionally change this to your domain or IP.

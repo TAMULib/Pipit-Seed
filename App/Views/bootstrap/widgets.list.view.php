@@ -34,7 +34,6 @@ echo "
     }
 ?>
     </table>
-
 <?php
     if ($resultsPage->getPageCount() > 1) {
         echo buildResultsPageNav($app_http,$resultsPage);

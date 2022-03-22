@@ -132,8 +132,8 @@ if ($controllerCss) {
 }
 ?>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>vendor/jquery.min.js"></script>
-		<!-- Bootstrap JS - Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS - Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
             var app_http = '<?php echo $app_http;?>';
@@ -156,31 +156,31 @@ if ($controllerJs) {
     </head>
     <body>
         <div id="theModal" class="modal fade" tabindex="-1" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-            		<div class="modal-header">
-                		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body"></div>
-				</div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
             </div>
         </div>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<span class="navbar-brand"><?php echo $config["APP_NAME"];?></span>
-				</div>
-				<div>
-					<ul class="nav navbar-nav">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand"><?php echo $config["APP_NAME"];?></span>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
 <?php
 echo buildPrimaryNavigation($pages,$controllerName,$config['PATH_HTTP'],$globalUser);
 ?>
-					</ul>
-        		</div>
-			</div>
-		</nav>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div id="systemBar" class="clearfix">
 <?php
 echo buildSystemMessages($systemMessages);
