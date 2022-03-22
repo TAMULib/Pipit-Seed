@@ -1,6 +1,13 @@
 <div class="do-results">
 <?php
-if ($parameters['widgets']) {
+if ($parameters['pagedWidgets'] || $parameters['widgets']) {
+    $results = [];
+    if ($parameters['pagedWidgets']) {
+        $resultsPage = $parameters['pagedWidgets'];
+        $results = $resultsPage->getPageResults();
+    } else {
+        $results = $parameters['widgets'];
+    }
 ?>
     <table class="list">
         <tr>
@@ -8,7 +15,7 @@ if ($parameters['widgets']) {
             <th>Actions</th>
         </tr>
 <?php
-    foreach ($parameters['widgets'] as $widget) {
+    foreach ($results as $widget) {
         echo "<tr>
                     <td>{$widget['name']}</td>
                     <td class=\"capitalize\">
@@ -27,6 +34,9 @@ echo "
 ?>
     </table>
 <?php
+    if ($resultsPage->getPageCount() > 1) {
+        echo buildResultsPageNav($app_http,$resultsPage);
+    }
 } else {
     echo 'No widgets, yet!';
 }

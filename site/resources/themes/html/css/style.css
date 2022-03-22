@@ -1,3 +1,8 @@
+:root {
+	--primary-color: #008a00;
+	--secondary-color: #EFEFEF;
+}
+
 body {
     font-family: arial;
     font-size: 10pt;
@@ -85,7 +90,7 @@ input[type=submit].small, a.button-small {
 .do-submit-validate .alert {
     border: 1px solid #ccc;
     border-radius: 6px;
-    background-color: #efefef;
+    background-color: var(--secondary-color);
     color: red;
     text-align: center;
     display: none;
@@ -175,13 +180,13 @@ form .column {
 
 header {
     background: #52b152; /* Old browsers */
-    background: -moz-linear-gradient(top,  #52b152 10%, #008a00 93%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,#52b152), color-stop(93%,#008a00)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #52b152 10%,#008a00 93%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #52b152 10%,#008a00 93%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #52b152 10%,#008a00 93%); /* IE10+ */
-    background: linear-gradient(to bottom,  #52b152 10%,#008a00 93%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#52b152', endColorstr='#008a00',GradientType=0 ); /* IE6-9 */
+    background: -moz-linear-gradient(top,  #52b152 10%, var(--primary-color) 93%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(10%,#52b152), color-stop(93%,var(--primary-color))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #52b152 10%,var(--primary-color) 93%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #52b152 10%,var(--primary-color) 93%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #52b152 10%,var(--primary-color) 93%); /* IE10+ */
+    background: linear-gradient(to bottom,  #52b152 10%,var(--primary-color) 93%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#52b152', endColorstr='var(--primary-color)',GradientType=0 ); /* IE6-9 */
     height: 100px;
     position: relative;
     font-size: 1.5em;
@@ -212,7 +217,7 @@ header h1 {
 .sysMsg h4.alert {
     border-radius: 6px;
     border: 1px solid #555;
-    background-color: #efefef;
+    background-color: var(--secondary-color);
     cursor: pointer;
     width: 50%;
     min-width: 100px;
@@ -226,7 +231,7 @@ header h1 {
 
 .navigation {
     font-size: 1.2em;
-    background-color: #efefef;
+    background-color: var(--secondary-color);
     min-height: 42px;
 }
 
@@ -241,7 +246,7 @@ header h1 {
 }
 
 .navigation a:hover, .navigation a.current {
-    border-left: 6px solid #008A00;
+    border-left: 6px solid var(--primary-color);
 }
 
 .navigation, .navigation a {
@@ -261,11 +266,11 @@ header h1 {
 }
 
 .subNav a:hover {
-    background-color: #efefef;
+    background-color: var(--secondary-color);
 }
 
 .subNav a.current {
-    background-color: #efefef;
+    background-color: var(--secondary-color);
 }
 
 .options {
@@ -290,8 +295,8 @@ table.list {
 }
 
 table.list th {
-    background-color: #008A00;
-    color: #efefef;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 table.list td {
@@ -299,7 +304,7 @@ table.list td {
 }
 
 table.list tr:nth-child(odd) {
-    background-color: #efefef;
+    background-color: var(--secondary-color);
 }
 
 table.list tr.inactive td {
@@ -342,13 +347,13 @@ table.list tr.inactive td {
 
 #theModal .header {
     border-bottom: 1px solid #000;
-    background-color: #008A00;
+    background-color: var(--primary-color);
     text-align: right;
     padding: 4px;
 }
 
 #theModal .header, #theModal .header a {
-    color: #efefef;
+    color: var(--secondary-color);
 }
 
 #theModal .header a {
@@ -375,7 +380,7 @@ table.list tr.inactive td {
 #ui-datepicker-div .ui-widget-header {
     border: 1px solid #dfdfdf;
     background-image: none;
-    background-color: #008A00;
+    background-color: var(--primary-color);
     border-radius: 0px;
 }
 
@@ -386,8 +391,58 @@ table.list tr.inactive td {
 
 #ui-datepicker-div .ui-state-active, #ui-datepicker-div .ui-widget-content .ui-state-active,
     #ui-datepicker-div .ui-widget-header .ui-state-active {
-    border: 1px solid #008A00;
-    color: #008A00
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color)
+}
+
+.pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 20px 0;
+	border-radius: 4px;
+}
+
+.pagination > li {
+	display: inline;
+}
+
+.pagination a {
+	text-decoration: none !important;
+	z-index: 0 !important;
+	color: #333;
+}
+
+.pagination > li > a, .pagination > li > span {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+    color: #333;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span {
+	margin-left: 0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.pagination > li:last-child > a, .pagination > li:last-child > span {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.pagination > li > a:hover {
+	background-color: #e6e6e6;
+}
+
+.pagination > li.active > a, .pagination > li.active > a:hover {
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
+	color: #fff;
 }
 
 /* css preloader */
@@ -504,50 +559,50 @@ table.list tr.inactive td {
 
 @-moz-keyframes bounce_squaresWaveG {
     0% {
-        background-color:#efefef;
+        background-color:var(--secondary-color);
     }
 
     100% {
-        background-color:#008A00;
+        background-color:var(--primary-color);
     }
 }
 
 @-webkit-keyframes bounce_squaresWaveG {
     0% {
-        background-color:#efefef;
+        background-color:var(--secondary-color);
     }
 
     100% {
-        background-color:#008A00;
+        background-color:var(--primary-color);
     }
 }
 
 @-ms-keyframes bounce_squaresWaveG {
     0% {
-        background-color:#efefef;
+        background-color:var(--secondary-color);
     }
 
     100% {
-        background-color:#008A00;
+        background-color:var(--primary-color);
     }
 }
 
 @-o-keyframes bounce_squaresWaveG {
     0% {
-        background-color:#efefef;
+        background-color:var(--secondary-color);
     }
 
     100% {
-        background-color:#008A00;
+        background-color:var(--primary-color);
     }
 }
 
 @keyframes bounce_squaresWaveG {
     0% {
-        background-color:#efefef;
+        background-color:var(--secondary-color);
     }
 
     100% {
-        background-color:#008A00;
+        background-color:var(--primary-color);
     }
 }
