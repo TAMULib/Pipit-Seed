@@ -116,7 +116,6 @@ $themePath = $config['PATH_THEMES'].$themeFolder.'/';
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="apple-touch-icon" href="iphone-icon.png" />
 		<!-- Bootstrap CSS - Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="<?php echo $config['PATH_CSS'];?>helpers.css" media="screen"/>
@@ -153,7 +152,7 @@ if ($controllerJs) {
     echo '<script type="text/javascript" src="'.$controllerJs.'"></script>';
 }
 ?>
-        <link rel="shortcut icon" href="ico/favicon.ico">
+        <link rel="shortcut icon" href="<?=$config['PATH_IMAGES']?>pipit-favicon.ico">
     </head>
     <body>
         <div id="theModal" class="modal fade" tabindex="-1" role="dialog">
