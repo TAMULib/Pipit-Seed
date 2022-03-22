@@ -52,10 +52,11 @@ CREATE TABLE IF NOT EXISTS users_ldap (
 --
 
 CREATE TABLE IF NOT EXISTS widgets (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `part_count` int(11) NOT NULL
+  `part_count` int(11) NOT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -125,17 +126,6 @@ CREATE TABLE IF NOT EXISTS `files_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `files_types`
---
-
-INSERT INTO `files_types` (`id`, `name`) VALUES
-(1, 'Widget Attachments');
-
---
--- Indexes for dumped tables
---
-
---
 -- Indexes for table `files_types`
 --
 ALTER TABLE `files_types`
@@ -149,4 +139,7 @@ ALTER TABLE `files_types`
 -- AUTO_INCREMENT for table `files_types`
 --
 ALTER TABLE `files_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+INSERT INTO `files_types` (`name`) VALUES
+('Widget Attachments');
