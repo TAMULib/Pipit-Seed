@@ -1,8 +1,9 @@
 <?php
 namespace App\Classes\Data;
 use Pipit\Classes\Data\AbstractPageableDataBaseRepository;
+use Pipit\Interfaces\EntityRepository;
 
-class Widgets extends AbstractPageableDataBaseRepository {
+class Widgets extends AbstractPageableDataBaseRepository implements EntityRepository {
 	public function __construct() {
 		parent::__construct('widgets','id','name',null,array("name"),5);
 	}
@@ -20,5 +21,9 @@ class Widgets extends AbstractPageableDataBaseRepository {
     public function removePartById($partId) {
         $sql = "DELETE FROM {$this->primaryTable}_parts WHERE id=:partid";
         return $this->executeUpdate($sql,array(":partid"=>$partId));
+    }
+
+    public function getEntityBuilder() {
+        return Entities\Widget::buildEntity();
     }
 }
