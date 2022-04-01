@@ -1,5 +1,5 @@
 {
     "require": {
-        "tamu-lib/pipit": "dev-development"
+        "tamu-lib/pipit": "dev-65-data-entities"
     }
 }
