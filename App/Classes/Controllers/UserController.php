@@ -1,9 +1,7 @@
 <?php
 namespace App\Classes\Controllers;
-use App\Classes\Data as AppClasses;
-use Core\Classes as Core;
 
-class UserController extends Core\AbstractController {
+class UserController extends AppController {
     private $usersRepo;
 
     protected function configure() {

@@ -1,9 +1,7 @@
 <?php
 namespace App\Classes\Controllers;
-use App\Classes\Data as AppData;
-use Core\Classes as Core;
 
-class UsersAdminController extends Core\AbstractController {
+class UsersAdminController extends AppController {
     private $usersRepo;
 
     protected function configure() {

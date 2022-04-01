@@ -1,9 +1,7 @@
 <?php
 namespace App\Classes\Controllers;
-use App\Classes\Data as AppClasses;
-use Core\Classes as Core;
 
-class FilesController extends Core\AbstractController {
+class FilesController extends AppController {
     private $fileManager;
 
     public function configure() {

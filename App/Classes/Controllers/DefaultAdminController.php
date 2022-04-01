@@ -1,8 +1,7 @@
 <?php
 namespace App\Classes\Controllers;
-use Core\Classes as Core;
 
-class DefaultAdminController extends Core\AbstractController {
+class DefaultAdminController extends AppController {
     protected function configure() {
         $this->requireAdmin = true;
     }

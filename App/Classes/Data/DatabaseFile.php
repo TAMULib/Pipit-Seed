@@ -1,13 +1,13 @@
 <?php
 namespace App\Classes\Data;
-use Core\Classes\Data as CoreData;
+use Pipit\Classes\Data\SimpleFile;
 
 /**
  * Represents a file entry from the database
  *
  * @author Jason Savell <jsavell@library.tamu.edu>
  */
-class DatabaseFile extends CoreData\SimpleFile {
+class DatabaseFile extends SimpleFile {
     private $id;
     private $uploadDate;
     private $uploaderData;

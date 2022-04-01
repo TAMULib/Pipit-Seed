@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\Loaders;
-use Core\Classes\Loaders as CoreLoaders;
+use Pipit\Classes\Loaders\CoreLoader;
 
 /**
 *
@@ -9,6 +9,6 @@ use Core\Classes\Loaders as CoreLoaders;
 *   @author Jason Savell <jsavell@library.tamu.edu>
 *
 */
-class AppLoader extends CoreLoaders\CoreLoader {
+class AppLoader extends CoreLoader {
 
 }

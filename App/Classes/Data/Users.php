@@ -1,13 +1,13 @@
 <?php
 namespace App\Classes\Data;
-use Core\Classes\Data as CoreData;
+use Pipit\Classes\Data\AbstractDataBaseRepository;
 
 /**
 *   Repo for managing application Users
 *
 *   @author Jason Savell <jsavell@library.tamu.edu>
 */
-class Users extends CoreData\AbstractDataBaseRepository {
+class Users extends AbstractDataBaseRepository {
     public function __construct() {
         parent::__construct('users','id','name_last',array('username','email','name_first','name_last','role','inactive'),array("name_last","name_first","email"));
     }

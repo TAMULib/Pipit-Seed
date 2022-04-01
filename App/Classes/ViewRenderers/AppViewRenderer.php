@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\ViewRenderers;
-use Core\Classes as CoreClasses;
+use Pipit\Classes\ViewRenderers\HTMLViewRenderer;
 
 /**
 *   An app level customization of Core's HTMLViewRenderer to demonstrate extending a Core ViewRender implementation
@@ -10,7 +10,7 @@ use Core\Classes as CoreClasses;
 *
 *   @author Jason Savell <jsavell@library.tamu.edu>
 */
-class AppViewRenderer extends CoreClasses\ViewRenderers\HTMLViewRenderer {
+class AppViewRenderer extends HTMLViewRenderer {
     protected $viewPaths = array('bootstrap','html');
 
     public function __construct($globalUser,$pages,$data,$controllerName) {

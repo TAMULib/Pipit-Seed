@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\Data;
-use Core\Classes\Data as CoreData;
+use Pipit\Classes\Data\AbstractDataBaseRepository;
 use App\Classes\Helpers as Helpers;
 
 /**
@@ -8,7 +8,7 @@ use App\Classes\Helpers as Helpers;
  *
  * @author Jason Savell <jsavell@library.tamu.edu>
  */
-class Files extends CoreData\AbstractDataBaseRepository {
+class Files extends AbstractDataBaseRepository {
     private $fileManager;
 
     public function __construct() {

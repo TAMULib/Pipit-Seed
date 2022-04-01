@@ -1,8 +1,8 @@
 <?php
 namespace App\Classes\Data;
-use Core\Classes\Data as CoreData;
+use Pipit\Classes\Data\AbstractPageableDataBaseRepository;
 
-class Widgets extends CoreData\AbstractPageableDataBaseRepository {
+class Widgets extends AbstractPageableDataBaseRepository {
 	public function __construct() {
 		parent::__construct('widgets','id','name',null,array("name"),5);
 	}

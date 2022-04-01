@@ -1,5 +1,5 @@
 {
     "require": {
-        "tamu-lib/pipit": "dev-issue-71"
+        "tamu-lib/pipit": "dev-development"
     }
 }

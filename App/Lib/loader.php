@@ -1,7 +1,7 @@
 <?php
 namespace App\Lib;
-use Core\Classes as CoreClasses;
-use Core\Lib as CoreLib;
+use Pipit\Classes\Loaders\CoreLoader;
+use Pipit\Lib as CoreLib;
 
 /**
 *   App Loader - The entry point for the application. All endpoints lead, here.
@@ -57,7 +57,7 @@ if (!empty($config['LOADER_CLASS'])) {
     $siteLoader = new $className($config);
     $logger->debug("Using Configured Loader Class: {$className}");
 } else {
-    $siteLoader = new CoreClasses\Loaders\CoreLoader($config);
+    $siteLoader = new CoreLoader($config);
     $logger->debug("Using Default Loader Class: CoreLoader");
 }
 $siteLoader->load();

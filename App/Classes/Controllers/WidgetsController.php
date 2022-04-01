@@ -1,9 +1,7 @@
 <?php
 namespace App\Classes\Controllers;
-use App\Classes\Data as AppClasses;
-use Core\Classes as Core;
 
-class WidgetsController extends Core\AbstractController {
+class WidgetsController extends AppController {
 	private $widgetsRepo;
 
 	protected function configure() {

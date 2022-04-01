@@ -1,9 +1,7 @@
 <?php
 namespace App\Classes\Controllers;
-use App\Classes\Data as AppClasses;
-use Core\Classes as Core;
 
-class DynamicRepoController extends Core\AbstractController {
+class DynamicRepoController extends AppController {
     private $dynamicRepo;
 
     protected function configure() {

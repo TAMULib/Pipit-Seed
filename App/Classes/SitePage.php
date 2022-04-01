@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes;
-use Core\Classes as CoreClasses;
+use Pipit\Classes\Site\CoreSitePage;
 
 /**
 *   An app level implementation of a SitePage, intended for customizations beyond what CoreSitePage offers by default.
@@ -11,5 +11,5 @@ use Core\Classes as CoreClasses;
 *
 *   @author Jason Savell <jsavell@library.tamu.edu>
 */
-class SitePage extends CoreClasses\CoreSitePage {
+class SitePage extends CoreSitePage {
 }
