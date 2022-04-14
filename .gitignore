@@ -1,4 +1,5 @@
 App/Config/config.php
+App/Config/prod/*
 composer.lock
 composer.phar
 /vendor/

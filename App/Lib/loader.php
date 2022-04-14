@@ -1,7 +1,8 @@
 <?php
 namespace App\Lib;
 use Pipit\Classes\Loaders\CoreLoader;
-use Pipit\Lib as CoreLib;
+use Pipit\Lib\CoreFunctions;
+use Pipit\Lib\CoreAutoload;
 
 /**
 *   App Loader - The entry point for the application. All endpoints lead, here.
@@ -17,7 +18,7 @@ require_once PATH_LIB."functions.php";
 *   This autoloader will search NAMESPACE_APP for a matching file containing the declaration of that class or interface.
 */
 spl_autoload_register(function($class) {
-    CoreLib\loadFile($class,NAMESPACE_APP,PATH_APP);
+    CoreAutoload::loadFile($class,NAMESPACE_APP,PATH_APP);
 });
 
 if (WITH_COMPOSER) {
@@ -26,19 +27,7 @@ if (WITH_COMPOSER) {
     require PATH_CORE_LIB.'/autoload.php';
 }
 
-require_once PATH_CONFIG.'config.dynamic.repositories.php';
-require_once PATH_CONFIG.'config.pages.php';
-
-$config = get_defined_constants(true)["user"];
-if (!empty($sitePages)) {
-    $config['sitePages'] = $sitePages;
-    unset($sitePages);
-}
-
-if (!empty($GLOBALS[DYNAMIC_REPOSITORY_KEY])) {
-    $config[DYNAMIC_REPOSITORY_KEY] = $GLOBALS[DYNAMIC_REPOSITORY_KEY];
-    unset($GLOBALS[DYNAMIC_REPOSITORY_KEY]);
-}
+$config = CoreFunctions::getInstance()->getAppConfiguration();
 
 if (!empty($forceRedirectUrl)) {
     $config['forceRedirectUrl'] = $forceRedirectUrl;
@@ -50,7 +39,7 @@ if (!empty($controllerConfig)) {
     unset($controllerConfig);
 }
 
-$logger = CoreLib\getLogger();
+$logger = CoreFunctions::getInstance()->getLogger();
 
 if (!empty($config['LOADER_CLASS'])) {
     $className = "{$config['NAMESPACE_APP']}Classes\\Loaders\\{$config['LOADER_CLASS']}";

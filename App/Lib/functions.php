@@ -5,8 +5,6 @@
 *
 */
 
-require_once PATH_CORE_LIB."functions.php";
-
 function buildUploadForm($baseUrl,$modalContext=null,$action='upload',$subaction=null,$hiddenFields=null) {
     $html = '<form class="do-upload form-inline" name="upload" method="POST" action="'.$baseUrl.'">';
     if ($modalContext) {
