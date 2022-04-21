@@ -37,7 +37,7 @@ define("NAMESPACE_APP", "App\\");
  */
 
 //The location of the module ini files
-define('PATH_CONFIG', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Config/");
+define('PATH_CONFIG', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Config/demo/");
 define('PATH_LIB', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Lib/");
 define('PATH_CORE_LIB', PATH_CORE.str_replace('\\', '/', NAMESPACE_CORE)."Lib/");
 define('PATH_CONTROLLERS', PATH_APP.str_replace('\\', '/', NAMESPACE_APP)."Controllers/");
