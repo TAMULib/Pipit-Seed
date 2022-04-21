@@ -1,6 +1,10 @@
 :root {
-    --primary-color: #008a00;
-    --secondary-color: #f8f8f8;
+    --primary-color: #4d4d4d;
+    --secondary-color: #333;
+}
+
+body > .container {
+    margin-bottom: 36px;
 }
 
 .navbar-default {
@@ -15,6 +19,10 @@
 
 a,a:focus, a:hover {
     color: var(--primary-color);
+}
+
+#systemBar {
+    margin-top: 20px;
 }
 
 .sysMsg div.alert {
@@ -43,7 +51,7 @@ a,a:focus, a:hover {
 
 .do-file-preview {
     border: 2px solid #dfdfdf;
-    background-color: var(--secondary-color);
+    background-color: #ededed;
     background-position: center center;
     background-repeat: no-repeat;
      background-size: cover;
@@ -96,4 +104,10 @@ div.do-validate label:after {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: #fff;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span,
+  .pagination > .active > span:focus, .pagination > .active > span:hover,
+  .input-group .form-control, .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+    z-index: auto;
 }

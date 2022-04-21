@@ -3,7 +3,7 @@
 //This must be set to the real file path to the base directory of your server, e.g. '/var/www/html/'
 define('PATH_ROOT', '/var/www/html/');
 
-define('APP_NAME', 'The PipitSeed App');
+define('APP_NAME', 'The Pipit Seed App');
 define('APP_DIRECTORY', 'Pipit-Seed');
 
 define('PATH_APP', PATH_ROOT.APP_DIRECTORY.'/');
@@ -13,7 +13,7 @@ define('WITH_COMPOSER',true);
 if (WITH_COMPOSER) {
 	define('VENDOR_DIRECTORY', 'vendor');
 	define('PATH_VENDOR', PATH_APP.VENDOR_DIRECTORY.'/');
-	define('PATH_CORE', PATH_VENDOR.'tamu-lib/pipit/');
+	define('PATH_CORE', PATH_VENDOR.'tamu-lib/pipit/src/');
 } else {
     define('PATH_CORE', PATH_ROOT.'Pipit/');
 }
@@ -80,10 +80,10 @@ define("LOG_LEVEL",3);
 //define('SITE_CLASS','Site');
 
 //If VIEW_RENDERER is not set, the app will use the HTMLViewRenderer by default.
-//define('VIEW_RENDERER','AppViewRenderer');
+define('VIEW_RENDERER','AppViewRenderer');
 
-//Define the theme folder HTMLViewRenderer based ViewRenderers should use (default options are 'bootstrap' and 'html')
-define('ACTIVE_THEME','bootstrap');
+//Define the theme folder HTMLViewRenderer based ViewRenderers should use (default options are 'bootstrap', 'html' and 'tamu')
+define('ACTIVE_THEME','tamu');
 
 /**
  * The page access levels (use when defining pages in the site.pages config file)

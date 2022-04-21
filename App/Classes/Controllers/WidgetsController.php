@@ -17,7 +17,7 @@ class WidgetsController extends AppController {
 	protected function parts() {
 		$data = $this->getSite()->getSanitizedInputData();
 		$widget = $this->widgetsRepo->getById($data['widgetid']);
-		$this->getPage()->setSubTitle('Parts for '.$widget['name']);
+		$this->getPage()->setSubTitle('Parts for '.$widget->getName());
 		$this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
 		$this->getSite()->getViewRenderer()->registerViewVariable("parts",$this->widgetsRepo->getPartsByWidgetId($data['widgetid']));
 		$this->setViewName('widgets.parts');

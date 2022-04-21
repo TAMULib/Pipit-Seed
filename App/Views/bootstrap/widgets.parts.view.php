@@ -1,11 +1,12 @@
 <div class="do-results">
     <form class="do-submit vertical-spacer-bottom" name="addpart" method="POST" action="<?php echo $app_http;?>">
 <?php
-$modalContext = 'action=parts&widgetid='.$parameters['widget']['id'];
+$widget = $parameters['widget'];
+$modalContext = 'action=parts&widgetid='.$widget->getId();
 echo '  <input type="hidden" name="modal_context" value="'.$modalContext.'" />
         <input type="hidden" name="action" value="parts" />
         <input type="hidden" name="subaction" value="add" />
-        <input type="hidden" name="widgetid" value="'.$parameters['widget']['id'].'" />
+        <input type="hidden" name="widgetid" value="'.$widget->getId().'" />
         <div class="input-group col col-sm-6 col-xs-10">
             <input class="form-control" type="text" name="part[name]" />
             <span class="input-group-btn">
