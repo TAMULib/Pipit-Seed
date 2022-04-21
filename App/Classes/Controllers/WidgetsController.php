@@ -1,9 +1,7 @@
 <?php
 namespace App\Classes\Controllers;
-use App\Classes\Data as AppClasses;
-use Core\Classes as Core;
 
-class WidgetsController extends Core\AbstractController {
+class WidgetsController extends AppController {
 	private $widgetsRepo;
 
 	protected function configure() {
@@ -19,7 +17,7 @@ class WidgetsController extends Core\AbstractController {
 	protected function parts() {
 		$data = $this->getSite()->getSanitizedInputData();
 		$widget = $this->widgetsRepo->getById($data['widgetid']);
-		$this->getPage()->setSubTitle('Parts for '.$widget['name']);
+		$this->getPage()->setSubTitle('Parts for '.$widget->getName());
 		$this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
 		$this->getSite()->getViewRenderer()->registerViewVariable("parts",$this->widgetsRepo->getPartsByWidgetId($data['widgetid']));
 		$this->setViewName('widgets.parts');
@@ -159,8 +157,13 @@ class WidgetsController extends Core\AbstractController {
 	protected function search() {
 		$data = $this->getSite()->getSanitizedInputData();
 		if (isset($data['term'])) {
-			$this->getSite()->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
-			$this->setViewName("widgets.list");
+			if ($data['term']) {
+				$this->getSite()->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
+				$this->setViewName("widgets.list");
+			} else {
+				$this->loadDefault();
+			}
+
 		} else {
 			$this->getSite()->addSystemError('There was an error with the search');
 		}
@@ -168,7 +171,8 @@ class WidgetsController extends Core\AbstractController {
 
 	protected function loadDefault() {
 		$this->getPage()->setSubTitle('Widgets');
-		$this->getSite()->getViewRenderer()->registerViewVariable("widgets", $this->widgetsRepo->get());
+		$page = isset($this->getSite()->getSanitizedInputData()['page']) ? $this->getSite()->getSanitizedInputData()['page']:1;
+		$this->getSite()->getViewRenderer()->registerViewVariable("pagedWidgets", $this->widgetsRepo->pagedGet($page));
 		$this->setViewName('widgets.list');
 	}
 }

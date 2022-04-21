@@ -1,59 +1,61 @@
+:root {
+    --primary-color: #008a00;
+    --secondary-color: #f8f8f8;
+}
+
 .navbar-default {
-	border-radius: 0;
-	border: 0;
-	border-bottom: 1px solid #008a00;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
-	background-color: #008a00;
+    background-color: var(--primary-color);
 }
 
 a,a:focus, a:hover {
-	color: #008a00;
+    color: var(--primary-color);
 }
 
 .sysMsg div.alert {
-	cursor: pointer;
-	width: 50%;
-	min-width: 100px;
-	text-align: center;
+    cursor: pointer;
+    width: 50%;
+    min-width: 100px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 #theModal .page-header,#theModal .page-header h1 {
-	margin-top: 0px;
+    margin-top: 0px;
 }
 
 .form-inline input {
-	width: auto;
+    width: auto;
 }
 
 .form-inline input[type=file] {
-	display: inline-block;
+    display: inline-block;
 }
 
 .do-upload {
-	margin: 30px 0;
+    margin: 30px 0;
 }
 
 .do-file-preview {
-	border: 2px solid #dfdfdf;
-	background-color: #F8F8F8;
-	background-position: center center;
-	background-repeat: no-repeat;
- 	background-size: cover;
-	width: 100px;
-	height: 100px;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 20px;
+    border: 2px solid #dfdfdf;
+    background-color: var(--secondary-color);
+    background-position: center center;
+    background-repeat: no-repeat;
+     background-size: cover;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
 }
 
 #subNav .col {
-	margin-top: 8px;
-}
-
-#searchStatus a {
-	display: none;
+    margin-top: 8px;
 }
 
 .do-submit-validate .alert {
@@ -80,4 +82,18 @@ div.form-group label:after {
 
 div.do-validate label:after {
     content: '';
+}
+
+.pagination > li > a {
+    color: #333;
+}
+
+.pagination > li > a:hover {
+    background-color: #e6e6e6;
+}
+
+.pagination > li.active > a, .pagination > li.active > a:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
 }

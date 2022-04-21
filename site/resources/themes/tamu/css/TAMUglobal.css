@@ -1,0 +1,667 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+
+/*Basics*/
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato',Arial,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #500000;
+    text-rendering: optimizeLegibility;
+    margin-top: .2rem;
+    margin-bottom: .5rem;
+    line-height: 1.4;
+}
+
+p{
+    color:#4d4d4d;
+}
+
+html {
+    font-size: 16px !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-family: 'Lato', Arial, sans-serif !important;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+a:focus, a:hover {
+    color: #337ab7;
+    text-decoration: underline;
+}
+
+a{color:#337ab7;}
+
+
+/*Header*/
+.global-nav {
+    margin: 0;
+    text-align: center;
+}
+
+.global-nav, .global-nav .top-bar {
+    background: #3c0000;
+}
+
+
+.global-nav .tabs dd>a:hover {
+    background: #500000;
+    color: #ffffff;
+    text-decoration: none !important;
+
+}
+
+.lib-link a {
+    color: #fff !important;
+    text-decoration: none !important;
+    display: inline-block;
+    padding: 2px 0 0px 56px;
+    margin: 10px 0;
+    font-size: 1.15rem;
+    background: url('https://library.tamu.edu/assets/images/tam.png') no-repeat;
+}
+
+.global-nav li a {
+    background: none;
+    color: #fff !important;
+    font-size: 1em;
+    font-family: 'Lato', Arial, sans-serif;
+    margin-left: -5px;
+}
+
+.global-nav li {
+    border-right: 1px solid #6a0000;
+    
+    display: inline-block;
+    margin: 5px 0 0px 0;
+}
+
+.global-nav li:last-child {
+    border-right: 0 solid #6a0000;
+}
+
+.site, .site a {
+    color: #fff;
+    font-size: 1.25em;
+    font-family: 'Lato', Arial, sans-serif;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.site a:hover{
+    text-decoration: none;
+}
+
+.global-nav .global-tabs {
+    overflow: auto;
+    display: block;
+    /*width: 75%;*/
+}
+
+@media only screen and (min-width: 43.913em){
+.global-nav .tabs dd:last-child>a {
+    border-right: 1px solid #6a0000;
+}}
+.global-nav .tabs dd:last-child>a {
+    border-right: none;
+}
+.global-nav .tabs dd>a {
+    background: 0 0;
+    color: #fff;
+    font-size: .8rem;
+}
+.global-nav .tabs dd>a {
+    padding: 15px 18px;
+    border-right: 1px solid #6a0000;
+}
+
+.tabs .tab-title>a, .tabs dd>a {
+    outline: 0;
+    display: block;
+    padding: 1rem 2rem;
+    font-family: 'Lato',Arial,sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 43.913em){
+.global-nav .tabs dd {
+    width: auto;
+    text-align: left;
+}
+
+.global-nav .tabs dd>a {
+    padding: 15px 20px;
+    border-right: 1px solid #6a0000;
+    
+}
+
+}
+.global-nav .tabs dd {
+    width: auto;
+    text-align: center;
+}
+.tabs .tab-title, .tabs dd {
+    position: relative;
+    margin-bottom: 0!important;
+    list-style: none;
+    float: left;
+}
+
+
+@media only screen and (min-width: 768px){
+.global-nav {
+    margin: 0;
+    text-align: left;
+    padding: 0;
+}
+
+.site {
+    margin: 20px 0;
+    text-align: left;
+}
+.lib-link a{
+font-size: 1.25rem; 
+}
+
+
+
+}
+
+.tabBorder{
+    border-top: 1px #8d8d8d solid;
+    margin: 48px -30px 0 -30px;
+}
+
+
+.site-title {
+    background: #500000;
+    border-top: 1px solid #8d8d8d;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+       -moz-box-shadow: 0 8px 6px -6px black;
+            box-shadow: 0 8px 6px -6px black;
+}
+.site h2, .site h3 {
+    margin-top: 5px;
+    color:#ffffff;
+}
+
+
+
+
+
+
+
+
+/*footer*/
+@media screen and (min-width: 768px){
+.footer, .header, .marketing {
+    padding-left: 0;
+    padding-right: 0;
+}
+}
+
+.inline-list {
+    list-style: none none;
+    text-align: center;
+    overflow: hidden;
+    padding: 0;
+}
+
+.inline-list>li {
+    list-style: none none;
+    display: inline-block;
+    margin-left: 1.375em;
+}
+
+.mainContent{
+    padding-right:50px;
+}
+
+.mainContent h1{
+    padding-bottom: 30px;
+}
+
+
+
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px; 
+  margin-top: 30px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.siteFooter, .page-wrap:after {
+  height: 142px; 
+}
+.siteFooter {
+    background: #3c0000;
+    padding: 20px 0 0;
+    width: 100%;
+}
+
+
+footer a, footer li, footer p {
+    color: #fff !important;
+    font-size: .95em;
+}
+
+.footer {
+    padding-top: 19px;
+    color: #000;
+    border-top: 1px solid #ccc;
+}
+.footer, .header, .marketing {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.color{margin: 0 0 30px 0;}
+.colorSwatch{
+    width:80px;
+    height:80px;
+    
+    display: inline-block;
+    
+}
+
+
+/*Colors*/
+
+.maroon{
+    background-color:#500000;
+}
+
+.dkMaroon{
+    background-color: #3c0000;
+}
+
+.greyTexture{
+    background: transparent url("https://library.tamu.edu/assets/images/denim.png");
+}
+
+.ltTeal{
+    background-color:#7fb5bb;
+}
+
+.deepYellow{
+    background-color: #f7b624;
+}
+
+.green{
+    background-color: #789533;
+}
+
+.dkTeal{
+    background-color: #355963;
+}
+
+.primaryBlue{
+    background-color: #4da7eb;
+}
+
+.brightTeal{
+    background-color: #01b4bd;
+}
+
+.dkGrey{
+    background-color: #d9d9d9;
+}
+
+.ltBlue{
+    background-color: #bcd4db;
+}
+
+.ltYellow{
+    background-color: #f8f4e0;
+}
+
+.grey{
+    background-color: #ededed;
+}
+
+.deepGrey{
+    color:#4d4d4d;
+    background-color: #4d4d4d;
+}
+
+.yellow{
+    background-color: #e5d78d;
+}
+
+.yellowSticky{
+    background-color: #fce7b8;
+}
+
+/*Nav Bars*/
+.navbar-default {
+    border-color: #d9d9d9;
+    background-color: #ededed;
+}
+
+.navbar-inverse {
+    background-color: #454545;
+    border-color: #080808;
+    background-image: url("https://library.tamu.edu/assets/images/denim.png");
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>a:hover {
+    color: #fff;
+    background-color: #080808;
+    text-decoration: none !important;
+}
+
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+
+
+
+
+@media (min-width: 768px){
+.navbar {
+    border-radius: 0px ;
+}
+}
+
+/*getting rid of rounded corners*/
+.btn{
+    border-radius: 0px;
+}
+
+.alert{
+    border-radius:0px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.well{
+    border-radius:0px;
+}
+
+.form-control{border-radius:0;}
+
+.nav-pills>li>a {
+    border-radius:0 0 0 0 !important;
+}
+
+.nav-tabs>li>a {
+    
+    border-radius: 0px 0px 0 0;
+}
+/*buttons*/
+
+.uxNav ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+}
+
+.uxNav li{
+    padding:5px 0;
+}
+
+/*.uxNav li:before  {
+    content: "â–º";
+    display: inline-block;
+     
+    color: #500000;
+}
+ */
+
+.uxNav li a{
+    color:#4d4d4d;
+}
+
+.uxNav li a:hover{
+    text-decoration: none !important;
+    color:#01b4bd;
+}
+
+.uxNav li a:hover:before{
+    text-decoration: none !important;
+    color:#01b4bd;
+    display: inline-block;
+    content: "â–º";
+     
+     
+    
+}
+
+ .uxNav .active a:before{
+    
+    
+    content: "â–º";
+    display: inline-block;
+     
+    color: #500000;
+ }
+
+.btn-default {
+    color: #333333;
+    border-color: #333333;
+    background-color: #ffffff;
+}
+
+
+
+.btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .open > .dropdown-toggle.btn-default {
+    color: #000000;
+    background-color: #4d4d4d;
+    border-color: #8F8F8C;
+    text-decoration: none !important;
+}
+
+.btn-maroon{
+    color: #ffffff;
+    border-color: #3c0000;
+    background-color: #500000;
+}
+
+.btn-maroon:hover, .btn-maroon:active {
+    color:#ffffff;
+    background-color: #626262;
+}
+
+.btn-primary:hover, .btn-success:hover, .btn-info:hover, .btn-warning:hover{
+    color:#000000;
+}
+
+.btn-primary {
+    color: #ffffff;
+    border-color: #2e6da4;
+    background-color: #167AC6;
+}
+
+
+.btn-success {
+    color: #000000;
+    border-color: #275c27;
+    background-color: #5cb85c;
+}
+
+.btn-success:hover {
+    
+    background-color: #51d651;
+    border-color: #275c27;
+}
+
+
+.btn-info {
+    color: #000000;
+    border-color: #0b9b9b;
+    background-color:#7fb5bb;
+}
+
+
+.btn-warning {
+    color: #000000;
+    border-color: #eea236;
+    background-color: #f7b624;
+}
+
+
+.btn-danger {
+    color: #000000;
+    border-color: #eea236;
+    background-color: #da5b57;
+}
+
+
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #4d4d4d;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    z-index: 2;
+    color: #fff;
+    border-color: #4da7eb;
+    background-color: #4da7eb;
+}
+
+.panel-primary>.panel-heading {
+    color: #fff;
+    border-color: #4da7eb;
+    background-color: #4da7eb;
+}
+
+.panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 0px;
+}
+
+
+/*Alphabet List*/
+.alphabet-group {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.alphabet-group .btn{
+    padding: 3px 9px;
+}
+
+
+
+/*help Panel */
+.panel{
+   border-radius: 0 0 0 0; 
+}
+
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.helpPanel .panel-heading{
+color: #fff;
+    font-size: 1em;
+    background: url("https://library.tamu.edu/assets/images/denim.png") repeat scroll left top transparent;
+    -webkit-border-radius: 0 0 0 0;
+    border-radius: 0 0 0 0;
+    margin: 0 auto 10px;
+    padding: 10px 15px;
+    z-index: 1;
+    display: block;
+    }
+
+
+    /*breadcrumbs*/
+    .breadcrumbs>* {
+    margin: 0;
+
+    float: left;
+    font-size: .75rem;
+    line-height: .75rem;
+    text-transform: none;
+    color: #500000;
+}
+
+.breadcrumbs{
+    list-style: none;
+        -webkit-padding-start: 0px;}
+
+.breadcrumbs>:first-child:before {
+    content: " ";
+    margin: 0;
+}
+.breadcrumbs>:before {
+    content: "/";
+    color: #AAA;
+    margin: 0 .75rem;
+    position: relative;
+    top: 1px;
+}
+
+
+/*Nav Bars*/
+
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:hover {
+    color: #fff;
+    background-color: #000000;
+    text-decoration: none !important;
+}
+
+
+.navbar-nav{
+        margin-left: -15px !important;
+
+}
+
+/*Links Directory app */
+.links li{
+    list-style-type: none;
+    padding-bottom: 10px;
+}
+
+.link .btn {
+    text-align: left;
+    
+    overflow: hidden;
+}
+
+.sortable-handle {width: 80%;}
+
+
+.link .btn-group {
+    width: 100%;
+}
+
+.sectionName {
+    width: 100%;
+    border-bottom: thin solid #efefef;
+    margin-bottom: 10px;
+}
+
+
+.btn-group>.btn {
+    position: relative;
+    float: left;
+}

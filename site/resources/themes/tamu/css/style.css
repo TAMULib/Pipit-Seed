@@ -1,0 +1,113 @@
+:root {
+    --primary-color: #4d4d4d;
+    --secondary-color: #333;
+}
+
+body > .container {
+    margin-bottom: 36px;
+}
+
+.navbar-default {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: var(--primary-color);
+}
+
+a,a:focus, a:hover {
+    color: var(--primary-color);
+}
+
+#systemBar {
+    margin-top: 20px;
+}
+
+.sysMsg div.alert {
+    cursor: pointer;
+    width: 50%;
+    min-width: 100px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#theModal .page-header,#theModal .page-header h1 {
+    margin-top: 0px;
+}
+
+.form-inline input {
+    width: auto;
+}
+
+.form-inline input[type=file] {
+    display: inline-block;
+}
+
+.do-upload {
+    margin: 30px 0;
+}
+
+.do-file-preview {
+    border: 2px solid #dfdfdf;
+    background-color: #ededed;
+    background-position: center center;
+    background-repeat: no-repeat;
+     background-size: cover;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+#subNav .col {
+    margin-top: 8px;
+}
+
+.do-submit-validate .alert {
+    display: none;
+}
+
+.do-submit-validate .do-error .alert {
+    display: block;
+}
+
+.do-validate label:before {
+    content: '*';
+}
+
+/* This works, except when content is loaded by AJAX so, there's a two selector hack below to accomplish the same thing
+div.form-group:not(.do-validate) label:after {
+    content: ' (optional)';
+}
+*/
+
+div.form-group label:after {
+    content: ' (optional)';
+}
+
+div.do-validate label:after {
+    content: '';
+}
+
+.pagination > li > a {
+    color: #333;
+}
+
+.pagination > li > a:hover {
+    background-color: #e6e6e6;
+}
+
+.pagination > li.active > a, .pagination > li.active > a:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span,
+  .pagination > .active > span:focus, .pagination > .active > span:hover,
+  .input-group .form-control, .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+    z-index: auto;
+}

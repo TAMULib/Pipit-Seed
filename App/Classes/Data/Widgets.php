@@ -1,29 +1,29 @@
 <?php
 namespace App\Classes\Data;
-use Core\Classes\Data as CoreData;
-/** 
-*	Repo for managing Widgets
-*	Intended as a starting point for developing application specific DAOs
-*	@author Jason Savell <jsavell@library.tamu.edu>
-*/
+use Pipit\Classes\Data\AbstractPageableDataBaseRepository;
+use Pipit\Interfaces\EntityRepository;
 
-class Widgets extends CoreData\AbstractDataBaseRepository {
+class Widgets extends AbstractPageableDataBaseRepository implements EntityRepository {
 	public function __construct() {
-		parent::__construct('widgets','id','name',null,array("name"));
+		parent::__construct('widgets','id','name',null,array("name"),5);
 	}
 
-	public function getPartsByWidgetId($widgetId) {
-		$sql = "SELECT * FROM {$this->primaryTable}_parts WHERE widgetid=:widgetid";
-		return $this->queryWithIndex($sql,'id',NULL,array("widgetid"=>$widgetId));
-	}
+    public function getPartsByWidgetId($widgetId) {
+        $sql = "SELECT * FROM {$this->primaryTable}_parts WHERE widgetid=:widgetid";
+        return $this->queryWithIndex($sql,'id',NULL,array("widgetid"=>$widgetId));
+    }
 
-	public function addPartToWidget($widgetId,$part) {
-		$part['widgetid'] = $widgetId;
-		return $this->buildInsertStatement($part,"{$this->primaryTable}_parts");
-	}
+    public function addPartToWidget($widgetId,$part) {
+        $part['widgetid'] = $widgetId;
+        return $this->buildInsertStatement($part,"{$this->primaryTable}_parts");
+    }
 
-	public function removePartById($partId) {
-		$sql = "DELETE FROM {$this->primaryTable}_parts WHERE id=:partid";
-		return $this->executeUpdate($sql,array(":partid"=>$partId));
-	}
+    public function removePartById($partId) {
+        $sql = "DELETE FROM {$this->primaryTable}_parts WHERE id=:partid";
+        return $this->executeUpdate($sql,array(":partid"=>$partId));
+    }
+
+    public function getEntityBuilder() {
+        return Entities\Widget::buildEntity();
+    }
 }
