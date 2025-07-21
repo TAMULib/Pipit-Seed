@@ -1,9 +1,9 @@
 <?php
 namespace App\Classes\Data;
-use Pipit\Classes\Data\AbstractPageableDataBaseRepository;
+use Pipit\Classes\Data\AbstractPageableDatabaseRepository;
 use Pipit\Interfaces\EntityRepository;
 
-class Widgets extends AbstractPageableDataBaseRepository implements EntityRepository {
+class Widgets extends AbstractPageableDatabaseRepository implements EntityRepository {
 	public function __construct() {
 		parent::__construct('widgets','id','name',null,array("name"),5);
 	}
