@@ -2,177 +2,179 @@
 namespace App\Classes\Controllers;
 
 class WidgetsController extends AppController {
-	private $widgetsRepo;
+    private $widgetsRepo;
 
-	protected function configure() {
-		$this->widgetsRepo = $this->getSite()->getDataRepository("Widgets");
+    protected function configure() {
+        $this->widgetsRepo = $this->getSite()->getDataRepository("Widgets");
 
-		$this->getPage()->setTitle("Manage Widgets");
-		$this->getPage()->setOptions(array(
-								array("name"=>"list"),
-								array("name"=>"add","action"=>"add","modal"=>true)));
-		$this->getPage()->setIsSearchable(true);
-	}
+        $this->getPage()->setTitle("Manage Widgets");
+        $this->getPage()->setOptions(array(
+                                array("name"=>"list"),
+                                array("name"=>"add","action"=>"add","modal"=>true)));
+        $this->getPage()->setIsSearchable(true);
+    }
 
-	protected function parts() {
-		$data = $this->getSite()->getSanitizedInputData();
-		$widget = $this->widgetsRepo->getById($data['widgetid']);
-		$this->getPage()->setSubTitle('Parts for '.$widget->getName());
-		$this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
-		$this->getSite()->getViewRenderer()->registerViewVariable("parts",$this->widgetsRepo->getPartsByWidgetId($data['widgetid']));
-		$this->setViewName('widgets.parts');
-	}
+    protected function parts() {
+        $data = $this->getSite()->getSanitizedInputData();
+        $widget = $this->widgetsRepo->getById($data['widgetid']);
+        $this->getPage()->setSubTitle('Parts for '.$widget->getName());
+        $this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
+        $this->getSite()->getViewRenderer()->registerViewVariable("parts",$this->widgetsRepo->getPartsByWidgetId($data['widgetid']));
+        $this->setViewName('widgets.parts');
+    }
 
-	protected function remove() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['id']) && is_numeric($data['id']) && $this->widgetsRepo->removeById($data['id'])) {
-			$this->getSite()->addSystemMessage('Widget removed');
-		} else {
-			$this->getSite()->addSystemError('Error removing widget');
-		}		
-	}
+    protected function remove() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if (isset($data['id']) && is_numeric($data['id']) && $this->widgetsRepo->removeById($data['id'])) {
+            $this->getSite()->addSystemMessage('Widget removed');
+        } else {
+            $this->getSite()->addSystemError('Error removing widget');
+        }
+    }
 
-	protected function insert() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['widget']) && $this->widgetsRepo->add($data['widget'])) {
-			$this->getSite()->addSystemMessage('Widget added');
-		} else {
-			$this->getSite()->addSystemError('Error adding widget');
-		}
-	}
+    protected function insert() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if (isset($data['widget']) && $this->widgetsRepo->add($data['widget'])) {
+            $this->getSite()->addSystemMessage('Widget added');
+        } else {
+            $this->getSite()->addSystemError('Error adding widget');
+        }
+    }
 
-	protected function add() {
-		$this->getPage()->setSubTitle('New Widget');
-		$this->setViewName('widgets.add');
-	}
+    protected function add() {
+        $this->getPage()->setSubTitle('New Widget');
+        $this->setViewName('widgets.add');
+    }
 
-	protected function update() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['widget']) && (isset($data['id']) && is_numeric($data['id'])) && $this->widgetsRepo->update($data['id'],$data['widget'])) {
-			$this->getSite()->addSystemMessage('Widget updated');
-		} else {
-			$this->getSite()->addSystemError('Error updating widget');
-		}
-	}
+    protected function update() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if (isset($data['widget']) && (isset($data['id']) && is_numeric($data['id'])) && $this->widgetsRepo->update($data['id'],$data['widget'])) {
+            $this->getSite()->addSystemMessage('Widget updated');
+        } else {
+            $this->getSite()->addSystemError('Error updating widget');
+        }
+    }
 
-	protected function edit() {
-		$this->getPage()->setSubTitle('Update Widget');
-		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['id']) && is_numeric($data['id']) && ($widget = $this->widgetsRepo->getById($data['id']))) {
-			$this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
-			$this->setViewName('widgets.edit');
-		}
-	}
+    protected function edit() {
+        $this->getPage()->setSubTitle('Update Widget');
+        $data = $this->getSite()->getSanitizedInputData();
+        if (isset($data['id']) && is_numeric($data['id']) && ($widget = $this->widgetsRepo->getById($data['id']))) {
+            $this->getSite()->getViewRenderer()->registerViewVariable("widget",$widget);
+            $this->setViewName('widgets.edit');
+        }
+    }
 
-	protected function partsAdd() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if ($this->widgetsRepo->addPartToWidget($data['widgetid'],$data['part'])) {
-			$this->getSite()->addSystemMessage('Part added');
-		} else {
-			$this->getSite()->addSystemError('There was an error adding the part');
-		}
-	}
+    protected function partsAdd() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if ($this->widgetsRepo->addPartToWidget($data['widgetid'],$data['part'])) {
+            $this->getSite()->addSystemMessage('Part added');
+        } else {
+            $this->getSite()->addSystemError('There was an error adding the part');
+        }
+    }
 
-	protected function partsRemove() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if ($this->widgetsRepo->removePartById($data['partid'])) {
-			$this->getSite()->addSystemMessage('Part removed');
-		} else {
-			$this->getSite()->addSystemError('There was an error removing the part');
-		}		
-	}
+    protected function partsRemove() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if ($this->widgetsRepo->removePartById($data['partid'])) {
+            $this->getSite()->addSystemMessage('Part removed');
+        } else {
+            $this->getSite()->addSystemError('There was an error removing the part');
+        }
+    }
 
-	protected function attachments() {
-		$data = $this->getSite()->getSanitizedInputData();
-		$this->getPage()->setSubTitle('Attachments');
+    protected function attachments() {
+        $data = $this->getSite()->getSanitizedInputData();
+        $this->getPage()->setSubTitle('Attachments');
 
-		if ($data['widgetid']) {
-			$widget = $this->widgetsRepo->getById($data['widgetid']);
-			if (!$data['pageContext']) {
-				$data['pageContext'] = null;
-			}
-			$this->getSite()->getViewRenderer()->registerViewVariable('pageContext', $data['pageContext']);
-			$this->getSite()->getViewRenderer()->registerViewVariable('attachments',$this->getSite()->getDataRepository("Files")->getByRelatedIdAndType($widget['id'],1));
-			$this->getSite()->getViewRenderer()->registerViewVariable('widget', $widget);
-			$this->setViewName('widgets.attachments');
-		}
-	}
+        if (isset($data['widgetid']) && $data['widgetid']) {
+            $widget = (array) $this->widgetsRepo->getById($data['widgetid']);
+            if (!isset($data['pageContext']) || !$data['pageContext']) {
+                $data['pageContext'] = null;
+            }
 
-	protected function attachmentsDownload() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if ($data['attachmentid'] && ($file = $this->getSite()->getDataRepository("Files")->getById($data['attachmentid']))) {
-			try {
-				$this->getSite()->getHelper("FileManager")->getDownloadableFile($file);
-			} catch (\RuntimeException $e) {
-				$this->getLogger()->warn($e->getMessage());
-				$this->getSite()->addSystemError('Could not find the file requested for download');
-				$this->loadDefault();
-			}
-		}
-	}
+            $files = $this->getSite()->getDataRepository("Files");
+            $this->getSite()->getViewRenderer()->registerViewVariable('pageContext', $data['pageContext']);
+            $this->getSite()->getViewRenderer()->registerViewVariable('attachments', $files->getByRelatedIdAndType($widget['id'],1));
+            $this->getSite()->getViewRenderer()->registerViewVariable('widget', $widget);
+            $this->setViewName('widgets.attachments');
+        }
+    }
 
-	protected function attachmentsAdd() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if ($data['newFile'] && $data['widgetid']) {
-			$widget = $this->widgetsRepo->getById($data['widgetid']);
-			$fileManager = $this->getSite()->getHelper("FileManager");
-			$filesRepo = $this->getSite()->getDataRepository("Files");
+    protected function attachmentsDownload() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if ($data['attachmentid'] && ($file = $this->getSite()->getDataRepository("Files")->getById($data['attachmentid']))) {
+            try {
+                $this->getSite()->getHelper("FileManager")->getDownloadableFile($file);
+            } catch (\RuntimeException $e) {
+                $this->getLogger()->warn($e->getMessage());
+                $this->getSite()->addSystemError('Could not find the file requested for download');
+                $this->loadDefault();
+            }
+        }
+    }
 
-			try {
-				$filePath = 'attachments';
-				$fileName = $fileManager->processBase64File($data['newFile'],null,$filePath);
+    protected function attachmentsAdd() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if ($data['newFile'] && $data['widgetid']) {
+            $widget = $this->widgetsRepo->getById($data['widgetid']);
+            $fileManager = $this->getSite()->getHelper("FileManager");
+            $filesRepo = $this->getSite()->getDataRepository("Files");
 
-				$fileType = '';
-				$temp = explode('.',$data['fileGloss']);
-				if (count($temp) > 1) {
-					$fileType = array_pop($temp);
-				}
+            try {
+                $filePath = 'attachments';
+                $fileName = $fileManager->processBase64File($data['newFile'],null,$filePath);
 
-				//add file to files repo
-				$filesRepo->add(array("name"=>$fileName,"path"=>$filePath,"file_type"=>$fileType,"gloss"=>$data['fileGloss'],"userid"=>$this->getSite()->getGlobalUser()->getProfileValue("id"),"typeid"=>1,"relatedid"=>$data['widgetid']));
-			} catch (\RuntimeException $e) {
-				$this->getLogger()->error($e->getMessage());
-				http_response_code(500);
-			}
-		}
-	}
+                $fileType = '';
+                $temp = explode('.',$data['fileGloss']);
+                if (count($temp) > 1) {
+                    $fileType = array_pop($temp);
+                }
 
-	protected function attachmentsRemove() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if ($data['attachmentid']) {
-			$fileManager = $this->getSite()->getHelper("FileManager");
-			$filesRepo = $this->getSite()->getDataRepository("Files");
-			if ($removableFile = $filesRepo->getById($data['attachmentid'])) {
-				try {
-					$fileManager->removeFile($removableFile);
-					$filesRepo->removeById($data['attachmentid']);
-				} catch (\RuntimeException $e) {
-					$this->getLogger()->warn($e->getMessage());
-					$this->getSite()->addSystemError('Error removing the attachment');
-				}
-			}
-		}
-	}
+                //add file to files repo
+                $filesRepo->add(array("name"=>$fileName,"path"=>$filePath,"file_type"=>$fileType,"gloss"=>$data['fileGloss'],"userid"=>$this->getSite()->getGlobalUser()->getProfileValue("id"),"typeid"=>1,"relatedid"=>$data['widgetid']));
+            } catch (\RuntimeException $e) {
+                $this->getLogger()->error($e->getMessage());
+                http_response_code(500);
+            }
+        }
+    }
 
-	protected function search() {
-		$data = $this->getSite()->getSanitizedInputData();
-		if (isset($data['term'])) {
-			if ($data['term']) {
-				$this->getSite()->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
-				$this->setViewName("widgets.list");
-			} else {
-				$this->loadDefault();
-			}
+    protected function attachmentsRemove() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if ($data['attachmentid']) {
+            $fileManager = $this->getSite()->getHelper("FileManager");
+            $filesRepo = $this->getSite()->getDataRepository("Files");
+            if ($removableFile = $filesRepo->getById($data['attachmentid'])) {
+                try {
+                    $fileManager->removeFile($removableFile);
+                    $filesRepo->removeById($data['attachmentid']);
+                } catch (\RuntimeException $e) {
+                    $this->getLogger()->warn($e->getMessage());
+                    $this->getSite()->addSystemError('Error removing the attachment');
+                }
+            }
+        }
+    }
 
-		} else {
-			$this->getSite()->addSystemError('There was an error with the search');
-		}
-	}
+    protected function search() {
+        $data = $this->getSite()->getSanitizedInputData();
+        if (isset($data['term'])) {
+            if ($data['term']) {
+                $this->getSite()->getViewRenderer()->registerViewVariable("widgets",$this->widgetsRepo->search($data['term']));
+                $this->setViewName("widgets.list");
+            } else {
+                $this->loadDefault();
+            }
 
-	protected function loadDefault() {
-		$this->getPage()->setSubTitle('Widgets');
-		$page = isset($this->getSite()->getSanitizedInputData()['page']) ? $this->getSite()->getSanitizedInputData()['page']:1;
-		$this->getSite()->getViewRenderer()->registerViewVariable("pagedWidgets", $this->widgetsRepo->pagedGet($page));
-		$this->setViewName('widgets.list');
-	}
+        } else {
+            $this->getSite()->addSystemError('There was an error with the search');
+        }
+    }
+
+    protected function loadDefault() {
+        $this->getPage()->setSubTitle('Widgets');
+        $page = isset($this->getSite()->getSanitizedInputData()['page']) ? $this->getSite()->getSanitizedInputData()['page']:1;
+        $this->getSite()->getViewRenderer()->registerViewVariable("pagedWidgets", $this->widgetsRepo->pagedGet($page));
+        $this->setViewName('widgets.list');
+    }
 }
