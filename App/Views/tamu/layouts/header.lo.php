@@ -124,7 +124,7 @@ $themePath = $config['PATH_THEMES'].$themeFolder.'/';
         <link rel="stylesheet" type="text/css" href="<?php echo $themePath;?>css/style.css" media="screen"/>
 
 <?php
-if (is_file("{$config['PATH_CSS']}{$controllerName}.css")) {
+if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
     echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controllerName.'.css" media="screen"/>';
 }
 ?>
@@ -141,9 +141,10 @@ if (is_file("{$config['PATH_CSS']}{$controllerName}.css")) {
         <script type="text/javascript" src="<?php echo $themePath;?>js/theme.js"></script>
 
 <?php
-if ($controllerName != 'default' && is_file("{$config['PATH_JS']}{$controllerName}.js")) {
+if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources/js/{$controllerName}.js")) {
     echo '<script type="text/javascript" src="'.$config['PATH_JS'].$controllerName.'.js"></script>';
 }
+
 ?>
         <link rel="shortcut icon" href="ico/favicon.ico">
     </head>
