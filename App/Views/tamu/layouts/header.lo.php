@@ -163,7 +163,7 @@ if ($controllerName != 'default' && is_file("{$config['PATH_APP']}site/resources
             </div>
         </div>
         <header class="globalHeader">
-            <tl-header page-title="<?php echo $config['APP_NAME'];?>" suppress-call-to-action="true">
+            <tl-header page-title="<?php echo $config['APP_NAME'];?>" suppress-call-to-action="true"></tl-header>
 <?php
 if ($globalUser->isLoggedIn()) {
     foreach ($pages as $controllerKey => $sitePage) {
