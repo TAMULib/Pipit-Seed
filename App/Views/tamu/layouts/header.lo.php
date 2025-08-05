@@ -125,7 +125,7 @@ $themePath = $config['PATH_THEMES'].$themeFolder.'/';
 
 <?php
 if (is_file("{$config['PATH_APP']}{$controllerName}.css")) {
-    echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controller.'.css" media="screen"/>';
+    echo '<link rel="stylesheet" type="text/css" href="'.$config['PATH_CSS'].$controllerName.'.css" media="screen"/>';
 }
 ?>
         <script type="text/javascript" src="<?php echo $config['PATH_JS'];?>vendor/jquery.min.js"></script>
